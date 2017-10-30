@@ -10,7 +10,11 @@ VALUES ('Birmingham International Fencing',
 		'2017-04-15',
 		'117') ;
 
-INSERT INTO dbo.COMP (
-TotalNumFencers)
+INSERT INTO dbo.Comp (
+FencerCutOff)
 
-VALUES(ROUND
+VALUES(FLOOR( 0.75 * dbo.Comp.TotalNumFencers));
+
+INSERT INTO dbo.Comp
+
+
