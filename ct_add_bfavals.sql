@@ -1,7 +1,9 @@
 /* This query inserts BFA ID and NIF points 
 to a competition table (ct) */
+DROP VIEW BfaTemp
+GO
 
-WITH BfaTemp (RankID, LN, FN, BFN, Bfa_ID, NifVals)
+CREATE VIEW BfaTemp (RankID, LN, FN, BFN, Bfa_ID, NifVals)
 
 AS
 --(SELECT bfa.BFA_ID, bfa.NIF_Val
@@ -14,7 +16,27 @@ LEFT JOIN dbo.BFA_ID as BFA
 ON UPPER(ct.Lastname) = UPPER(bfa.Surname)
 AND LTRIM(UPPER(ct.FirstName)) = LTRIM(UPPER(bfa.FirstName)))
 
+GO
 
+DELETE FROM BfaTemp
+WHERE BFA_ID in
+/* Determine BFA ID and Position in ranking based on first and last names*/
+(SELECT BFA.BFA_ID as DelID 
+FROM dbo.BFA_ID AS BFA
+LEFT JOIN 
+(SELECT DupNames.FirstName, DupNames.LastName, MAX(BFA.PosID) AS DeleteID
+FROM
+/* Determine any names where that are duplicated in the table */
+(SELECT BfaT.FN AS FirstName, BfaT.LN As LastName, COUNT(BfaT.LN) AS Replicas
+FROM BfaTemp AS BfaT
+GROUP BY BfaT.FN, BfaT.LN
+HAVING COUNT(BfaT.LN) >= 2 AND COUNT(BfaT.FN) >= 2) AS DupNames
+LEFT JOIN BFA_ID AS BFA
+ON DupNames.LastName = BFA.Surname AND DupNames.FirstName = BFA.FirstName
+GROUP BY DupNames.LastName, DupNames.FirstName) AS DelList
+ON BFA.PosID = DelList.DeleteID
+WHERE DelList.FirstName IS NOT NULL);
+GO
 /* TEST for whether Surnames do still exist in BFA ID database
 SELECT * FROM BFA_ID
 JOIN (SELECT LN, FN 
