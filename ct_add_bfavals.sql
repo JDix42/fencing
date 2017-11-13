@@ -1,18 +1,3 @@
-/* This query inserts BFA ID and NIF points 
-to a competition table (ct) */
-DROP VIEW BTemp
-GO
-
-/* Create temporary table to determine any duplicates */
-CREATE VIEW BTemp (RankID, LN, FN, BFN, Bfa_ID, NifVals)
-AS
-(SELECT ct.Rank, ct.LastName, ct.Firstname, bfa.FirstName AS BfaName, bfa.BFA_ID, bfa.NIF_Val
-FROM dbo.birm_res_new AS CT
-LEFT JOIN dbo.BFA_ID as BFA
-ON UPPER(ct.Lastname) = UPPER(bfa.Surname)
-AND LTRIM(UPPER(ct.FirstName)) = LTRIM(UPPER(bfa.FirstName)))
-GO
-
 /* Determine which BFA ranking set to use.
 New rankings sets with different NIF values.
 The rankings are updated every September and 
@@ -55,38 +40,95 @@ ELSE
 		SELECT *
 		FROM dbo.BFA_IDSept2016
 	END ;		
+ 
 
-/* Create CTE for BFA IDs and NIF values. */
-WITH BfaTemp (RankID, LN, FN, BFN, Bfa_ID, NifVals)
+/* Create temporary table to determine any duplicates */
+DROP TABLE #BTemp
 
-AS
---(SELECT bfa.BFA_ID, bfa.NIF_Val
---FROM dbo.birm_res_new AS ct
---LEFT JOIN dbo.BFA_ID AS bfa
---ON UPPER(ct.LastName) = UPPER(bfa.Surname))
-(SELECT ct.Rank, ct.LastName, ct.Firstname, bfa.FirstName AS BfaName, bfa.BFA_ID, bfa.NIF_Val
+CREATE TABLE #BTemp 
+(RankID		FLOAT, 
+LN			nvarchar(255), 
+FN			nvarchar(255),
+BFN			nvarchar(255), 
+Bfa_ID		float, 
+NifVals		float)
+
+INSERT INTO #BTemp
+SELECT ct.Rank, ct.LastName, ct.Firstname, bfa.FirstName AS BfaName, bfa.BFA_ID, bfa.NIF_Val
 FROM dbo.birm_res_new AS CT
 LEFT JOIN #BFA_set as BFA
-ON UPPER(ct.Lastname) = UPPER(bfa.Surname)
-AND LTRIM(UPPER(ct.FirstName)) = LTRIM(UPPER(bfa.FirstName))
-WHERE BFA.BFA_ID NOT IN
-(SELECT BFA.BFA_ID as DelID 
-FROM dbo.BFA_ID AS BFA
+ON UPPER(ct.Lastname) = UPPER(bfa.Surname);
+
+SELECT BFA1.FirstName, BFA1.Surname, BFA1.BFA_ID
+FROM #BFA_set AS BFA1
+LEFT JOIN #BFA_set AS BFA2
+ON BFA1.FirstName = BFA2.FirstName
+AND BFA1.Surname = BFA2.Surname
+WHERE BFA1.BFA_ID != BFA2.BFA_ID
+ORDER BY BFA1.Surname
+
+
+SELECT BFA.BFA_ID as DelID, DelList.FirstName, DelList.LastName
+FROM #BFA_set AS BFA
 LEFT JOIN 
 (SELECT DupNames.FirstName, DupNames.LastName, MAX(BFA.PosID) AS DeleteID
 FROM
 /* Determine any names where that are duplicated in the table */
 (SELECT BfaT.FN AS FirstName, BfaT.LN As LastName, COUNT(BfaT.LN) AS Replicas
-FROM BTemp AS BfaT
+FROM #BTemp AS BfaT
 GROUP BY BfaT.FN, BfaT.LN
 HAVING COUNT(BfaT.LN) >= 2 AND COUNT(BfaT.FN) >= 2) AS DupNames
 LEFT JOIN #BFA_set AS BFA
 ON DupNames.LastName = BFA.Surname AND DupNames.FirstName = BFA.FirstName
 GROUP BY DupNames.LastName, DupNames.FirstName) AS DelList
 ON BFA.PosID = DelList.DeleteID
-WHERE DelList.FirstName IS NOT NULL))
+WHERE DelList.FirstName IS NOT NULL
+
+/* Create temporary table for DelID */
+DROP TABLE #DT
+
+CREATE TABLE #DT (
+DelID	FLOAT,
+FirstName	nvarchar(255),
+LastName	nvarchar(255))
+
+INSERT INTO #DT
+SELECT BFA.BFA_ID as DelID, DelList.FirstName, DelList.LastName
+FROM #BFA_set AS BFA
+LEFT JOIN 
+(SELECT DupNames.FirstName, DupNames.LastName, MAX(BFA.PosID) AS DeleteID
+FROM
+/* Determine any names where that are duplicated in the table */
+(SELECT BfaT.FN AS FirstName, BfaT.LN As LastName, COUNT(BfaT.LN) AS Replicas
+FROM #BTemp AS BfaT
+GROUP BY BfaT.FN, BfaT.LN
+HAVING COUNT(BfaT.LN) >= 2 AND COUNT(BfaT.FN) >= 2) AS DupNames
+LEFT JOIN #BFA_set AS BFA
+ON DupNames.LastName = BFA.Surname AND DupNames.FirstName = BFA.FirstName
+GROUP BY DupNames.LastName, DupNames.FirstName) AS DelList
+ON BFA.PosID = DelList.DeleteID
+WHERE DelList.FirstName IS NOT NULL;
+
+SELECT * FROM #DT;
+
+/* Create CTE for BFA IDs and NIF values. */
+WITH BfaTemp (RankID, LN, FN, BFN, Bfa_ID, NifVals, delid)
+
+AS
+--(SELECT bfa.BFA_ID, bfa.NIF_Val
+--FROM dbo.birm_res_new AS ct
+--LEFT JOIN dbo.BFA_ID AS bfa
+--ON UPPER(ct.LastName) = UPPER(bfa.Surname))
+(SELECT ct.Rank, ct.LastName, ct.Firstname, bfa.FirstName AS BfaName, bfa.BFA_ID, bfa.NIF_Val, DT.DelID
+FROM dbo.birm_res_new AS CT
+LEFT JOIN #BFA_set as BFA
+ON UPPER(ct.Lastname) = UPPER(bfa.Surname)
+AND LTRIM(UPPER(ct.FirstName)) = LTRIM(UPPER(bfa.FirstName))
+LEFT JOIN #DT AS DT
+ON BFA.BFA_ID = DT.DelID)
 
 SELECT * FROM BfaTemp
+ORDER BY LN;
 
 /* Ensure that previous attemps to update BFA_ID and BF_points
 have been removed and changed to NULL */
