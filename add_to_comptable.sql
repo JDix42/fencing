@@ -2,12 +2,12 @@ INSERT INTO dbo.Comp (
 CompName,
 ShortName,
 Date,
-TotalNumFencers,
+TotalNumFencers
 )
 
 VALUES ('Birmingham International Fencing',
 		'BirmIntl',
-		'2017-04-15',
+		'2017-04-15 00:00:00.000',
 		'117') ;
 
 INSERT INTO dbo.Comp (
