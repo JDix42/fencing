@@ -56,79 +56,19 @@ NifVals		float)
 INSERT INTO #BTemp
 SELECT ct.Rank, ct.LastName, ct.Firstname, bfa.FirstName AS BfaName, bfa.BFA_ID, bfa.NIF_Val
 FROM dbo.birm_res_new AS CT
-LEFT JOIN #BFA_set as BFA
-ON UPPER(ct.Lastname) = UPPER(bfa.Surname);
-
-SELECT BFA1.FirstName, BFA1.Surname, BFA1.BFA_ID
+LEFT JOIN (SELECT BFA_int.FirstName, BFA_int.Surname, BFA_int.BFA_ID, BFA_int.NIF_Val 
+FROM #BFA_set AS BFA_int
+LEFT JOIN (SELECT BFA1.FirstName, BFA1.Surname, MIN(BFA1.PosID) AS RowID
 FROM #BFA_set AS BFA1
 LEFT JOIN #BFA_set AS BFA2
 ON BFA1.FirstName = BFA2.FirstName
 AND BFA1.Surname = BFA2.Surname
-WHERE BFA1.BFA_ID != BFA2.BFA_ID
-ORDER BY BFA1.Surname
-
-
-SELECT BFA.BFA_ID as DelID, DelList.FirstName, DelList.LastName
-FROM #BFA_set AS BFA
-LEFT JOIN 
-(SELECT DupNames.FirstName, DupNames.LastName, MAX(BFA.PosID) AS DeleteID
-FROM
-/* Determine any names where that are duplicated in the table */
-(SELECT BfaT.FN AS FirstName, BfaT.LN As LastName, COUNT(BfaT.LN) AS Replicas
-FROM #BTemp AS BfaT
-GROUP BY BfaT.FN, BfaT.LN
-HAVING COUNT(BfaT.LN) >= 2 AND COUNT(BfaT.FN) >= 2) AS DupNames
-LEFT JOIN #BFA_set AS BFA
-ON DupNames.LastName = BFA.Surname AND DupNames.FirstName = BFA.FirstName
-GROUP BY DupNames.LastName, DupNames.FirstName) AS DelList
-ON BFA.PosID = DelList.DeleteID
-WHERE DelList.FirstName IS NOT NULL
-
-/* Create temporary table for DelID */
-DROP TABLE #DT
-
-CREATE TABLE #DT (
-DelID	FLOAT,
-FirstName	nvarchar(255),
-LastName	nvarchar(255))
-
-INSERT INTO #DT
-SELECT BFA.BFA_ID as DelID, DelList.FirstName, DelList.LastName
-FROM #BFA_set AS BFA
-LEFT JOIN 
-(SELECT DupNames.FirstName, DupNames.LastName, MAX(BFA.PosID) AS DeleteID
-FROM
-/* Determine any names where that are duplicated in the table */
-(SELECT BfaT.FN AS FirstName, BfaT.LN As LastName, COUNT(BfaT.LN) AS Replicas
-FROM #BTemp AS BfaT
-GROUP BY BfaT.FN, BfaT.LN
-HAVING COUNT(BfaT.LN) >= 2 AND COUNT(BfaT.FN) >= 2) AS DupNames
-LEFT JOIN #BFA_set AS BFA
-ON DupNames.LastName = BFA.Surname AND DupNames.FirstName = BFA.FirstName
-GROUP BY DupNames.LastName, DupNames.FirstName) AS DelList
-ON BFA.PosID = DelList.DeleteID
-WHERE DelList.FirstName IS NOT NULL;
-
-SELECT * FROM #DT;
-
-/* Create CTE for BFA IDs and NIF values. */
-WITH BfaTemp (RankID, LN, FN, BFN, Bfa_ID, NifVals, delid)
-
-AS
---(SELECT bfa.BFA_ID, bfa.NIF_Val
---FROM dbo.birm_res_new AS ct
---LEFT JOIN dbo.BFA_ID AS bfa
---ON UPPER(ct.LastName) = UPPER(bfa.Surname))
-(SELECT ct.Rank, ct.LastName, ct.Firstname, bfa.FirstName AS BfaName, bfa.BFA_ID, bfa.NIF_Val, DT.DelID
-FROM dbo.birm_res_new AS CT
-LEFT JOIN #BFA_set as BFA
+GROUP BY BFA1.FirstName, BFA1.Surname) AS RowName
+ON BFA_int.PosID = RowName.RowID
+WHERE RowName.FirstName IS NOT NULL) as BFA
 ON UPPER(ct.Lastname) = UPPER(bfa.Surname)
-AND LTRIM(UPPER(ct.FirstName)) = LTRIM(UPPER(bfa.FirstName))
-LEFT JOIN #DT AS DT
-ON BFA.BFA_ID = DT.DelID)
+AND LTRIM(UPPER(ct.FirstName)) = LTRIM(UPPER(bfa.FirstName));
 
-SELECT * FROM BfaTemp
-ORDER BY LN;
 
 /* Ensure that previous attemps to update BFA_ID and BF_points
 have been removed and changed to NULL */
@@ -137,13 +77,25 @@ SET BFA_ID = NULL, BF_points = NULL
 
 /* Update values for BFA_ID and BF_points */
 MERGE INTO dbo.birm_res_new AS BRN
-USING BfaTemp AS BfaT
+USING #BTemp AS BfaT
 ON (BRN.LastName = BfaT.LN
 AND BRN.FirstName = BfaT.FN)
 WHEN MATCHED THEN 
 UPDATE SET
 BRN.BFA_ID = BfaT.BFA_ID,
 BRN.BF_points = BfaT.NifVals;
+
+/* Set "NULL" BF_points to zero to create a running total */
+UPDATE dbo.birm_res_new
+SET BF_points = 0
+WHERE BF_points IS NULL;
+
+SELECT SUM(BF_points) FROM dbo.birm_res_new;
+
+SELECT *, (SELECT SUM(BRN2.BF_points)
+FROM dbo.birm_res_new AS BRN2
+WHERE BRN2.Rank >= BRN1.Rank)
+FROM dbo.birm_res_new AS BRN1;
 
 /* TEST for whether Surnames do still exist in BFA ID database
 SELECT * FROM BFA_ID
