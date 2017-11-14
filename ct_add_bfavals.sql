@@ -90,13 +90,80 @@ UPDATE dbo.birm_res_new
 SET BF_points = 0
 WHERE BF_points IS NULL;
 
-SELECT SUM(BF_points) FROM dbo.birm_res_new;
+/* Create temporary table with country, BFA_ID and running total of the BF
+NIF points. If the country is not "GBR" and the running total is >5 then the
+fencer is an overseas fencer that has additional NIF points. This table
+allows us to track which fencer fit this criteria */
 
-SELECT *, (SELECT SUM(BRN2.BF_points)
+DROP TABLE #BFtotal
+
+CREATE TABLE #BFtotal (
+Rank		Float,
+Country		nchar(3),
+BFA_ID		Int,
+BF_points	Float,
+BF_runtot	Float)
+
+INSERT INTO #BFtotal
+SELECT BRN1.Rank, BRN1.Country, BRN1.BFA_ID, BRN1.BF_points, (SELECT SUM(BRN2.BF_points) AS BF_runtot
 FROM dbo.birm_res_new AS BRN2
-WHERE BRN2.Rank >= BRN1.Rank)
+WHERE BRN2.Rank >= BRN1.Rank) AS BF_runtot
 FROM dbo.birm_res_new AS BRN1;
 
+/* Update NIF (BF_points) for the overseas fencers.
+The BF_points are:
++6  when BF_runtot >= 24
++3  when 23 >= BF_runtot >= 16 
++1  when 15 >= BF_runtot >= 6
+0   when 5 >= BF_runtot   */
+
+UPDATE dbo.birm_res_new 
+SET BF_points = (
+CASE 
+	/* runtot >= 24 */
+	WHEN (SELECT BF_runtot
+	FROM #BFtotal AS BFT
+	WHERE Country != 'GBR' AND BFA_ID IS NULL
+	AND dbo.birm_res_new.Rank = BFT.Rank) >= 24
+	THEN '6'
+
+	/* 23 >= runtot >= 16 */
+	WHEN 23 >= (SELECT BF_runtot FROM #BFtotal AS BFT
+	WHERE Country != 'GBR' AND BFA_ID IS NULL
+	AND dbo.birm_res_new.Rank = BFT.Rank)
+	AND (SELECT BF_runtot FROM #BFtotal AS BFT
+	WHERE Country != 'GBR' AND BFA_ID IS NULL
+	AND dbo.birm_res_new.Rank = BFT.Rank) >= 16
+	THEN '3'
+	
+	/* 15 >= runtot >= 6 */
+	WHEN (SELECT BF_runtot FROM #BFtotal AS BFT
+	WHERE Country != 'GBR' AND BFA_ID IS NULL
+	AND dbo.birm_res_new.Rank = BFT.Rank) <= 15
+	AND (SELECT BF_runtot FROM #BFtotal AS BFT
+	WHERE Country != 'GBR' AND BFA_ID IS NULL
+	AND dbo.birm_res_new.Rank = BFT.Rank) >= 6
+	THEN  '1'
+
+	/* 5 >= runtot */
+	WHEN (SELECT BF_runtot FROM #BFtotal AS BFT
+	WHERE Country != 'GBR' AND BFA_ID IS NULL
+	AND dbo.birm_res_new.Rank = BFT.Rank) <= 5
+	THEN '0'
+	
+	/* Otherwise there is no need to change the values */
+	ELSE BF_points
+	END
+	)
+WHERE Country != 'GBR' AND BFA_ID IS NULL;
+
+
+SELECT *, BFT.BF_runtot FROM dbo.birm_res_new AS BRN
+LEFT JOIN #BFtotal AS BFT
+ON BRN.Rank = BFT.Rank
+WHERE BRN.Country != 'GBR' AND BRN.BFA_ID IS NULL;
+
+SELECT SUM(BF_points) FROM dbo.birm_res_new;
 /* TEST for whether Surnames do still exist in BFA ID database
 SELECT * FROM BFA_ID
 JOIN (SELECT LN, FN 
