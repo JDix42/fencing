@@ -42,6 +42,9 @@ ELSE
 	END ;		
  
 
+/* Determine number of fencers in competition */
+DECLARE @FenNum INT = (SELECT TotalNumFencers FROM dbo.Comp WHERE Comp_ID = 1 )
+
 /* Create temporary table to determine any duplicates */
 DROP TABLE #BTemp
 
@@ -110,6 +113,10 @@ FROM dbo.birm_res_new AS BRN2
 WHERE BRN2.Rank >= BRN1.Rank) AS BF_runtot
 FROM dbo.birm_res_new AS BRN1;
 
+/* Remove extra results that were for more fencers than attened */
+DELETE FROM dbo.birm_res_new
+WHERE Rank > @FenNum;
+
 /* Update NIF (BF_points) for the overseas fencers.
 The BF_points are:
 +6  when BF_runtot >= 24
@@ -124,7 +131,8 @@ CASE
 	WHEN (SELECT BF_runtot
 	FROM #BFtotal AS BFT
 	WHERE Country != 'GBR' AND BFA_ID IS NULL
-	AND dbo.birm_res_new.Rank = BFT.Rank) >= 24
+	AND dbo.birm_res_new.Rank = BFT.Rank
+	AND BFT.RANK <= @FenNum) >= 24
 	THEN '6'
 
 	/* 23 >= runtot >= 16 */
@@ -133,7 +141,8 @@ CASE
 	AND dbo.birm_res_new.Rank = BFT.Rank)
 	AND (SELECT BF_runtot FROM #BFtotal AS BFT
 	WHERE Country != 'GBR' AND BFA_ID IS NULL
-	AND dbo.birm_res_new.Rank = BFT.Rank) >= 16
+	AND dbo.birm_res_new.Rank = BFT.Rank
+	AND BFT.RANK <= @FenNum) >= 16
 	THEN '3'
 	
 	/* 15 >= runtot >= 6 */
@@ -142,13 +151,15 @@ CASE
 	AND dbo.birm_res_new.Rank = BFT.Rank) <= 15
 	AND (SELECT BF_runtot FROM #BFtotal AS BFT
 	WHERE Country != 'GBR' AND BFA_ID IS NULL
-	AND dbo.birm_res_new.Rank = BFT.Rank) >= 6
+	AND dbo.birm_res_new.Rank = BFT.Rank
+	AND BFT.RANK <= @FenNum) >= 6
 	THEN  '1'
 
 	/* 5 >= runtot */
 	WHEN (SELECT BF_runtot FROM #BFtotal AS BFT
 	WHERE Country != 'GBR' AND BFA_ID IS NULL
-	AND dbo.birm_res_new.Rank = BFT.Rank) <= 5
+	AND dbo.birm_res_new.Rank = BFT.Rank
+	AND BFT.RANK <= @FenNum) <= 5
 	THEN '0'
 	
 	/* Otherwise there is no need to change the values */
@@ -163,7 +174,7 @@ LEFT JOIN #BFtotal AS BFT
 ON BRN.Rank = BFT.Rank
 WHERE BRN.Country != 'GBR' AND BRN.BFA_ID IS NULL;
 
-SELECT SUM(BF_points) FROM dbo.birm_res_new;
+--SELECT SUM(BF_points) FROM dbo.birm_res_new;
 /* TEST for whether Surnames do still exist in BFA ID database
 SELECT * FROM BFA_ID
 JOIN (SELECT LN, FN 
@@ -180,15 +191,12 @@ WHERE BFA_ID IS NULL) AS LastNameTemp
 ON BFA_ID.FirstName = LastNameTemp.FN
 WHERE LEFT(BFA_ID.SurName, 1) = LEFT(LastNameTemp.LN, 1); */
 
-
 SELECT * 
 FROM BfaTemp
 ORDER BY RankID;
 
-
-INSERT INTO dbo.birm_res_new(BFA_ID, BF_points)
-SELECT Bfa_ID, NifVals
-FROM BfaTemp ;
-
 SELECT * 
 FROM dbo.birm_res_new;
+
+SELECT SUM(BF_points) FROM dbo.birm_res_new
+WHERE rank < 117;
