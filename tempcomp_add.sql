@@ -91,12 +91,13 @@ LN			nvarchar(255),
 FN			nvarchar(255),
 BFN			nvarchar(255), 
 Bfa_ID		float, 
-NifVals		float)
+NifVals		float,
+Country     nvarchar(255))
 
 INSERT INTO #BTemp
-SELECT TC.Rank, TC.LastName, TC.Firstname, bfa.FirstName AS BfaName, bfa.BFA_ID, bfa.NIF_Val
+SELECT TC.Rank, TC.LastName, TC.Firstname, bfa.FirstName AS BfaName, bfa.BFA_ID, bfa.NIF_Val, bfa.Country
 FROM dbo.TempComp AS TC
-LEFT JOIN (SELECT BFA_int.FirstName, BFA_int.Surname, BFA_int.BFA_ID, BFA_int.NIF_Val 
+LEFT JOIN (SELECT BFA_int.FirstName, BFA_int.Surname, BFA_int.BFA_ID, BFA_int.NIF_Val, BFA_int.Country 
 FROM #BFA_set AS BFA_int
 LEFT JOIN (SELECT BFA1.FirstName, BFA1.Surname, MIN(BFA1.PosID) AS RowID
 FROM #BFA_set AS BFA1
@@ -124,6 +125,13 @@ UPDATE SET
 TC.BFA_ID = BfaT.BFA_ID,
 TC.BF_points = BfaT.NifVals;
 
+/* Check Nationalities of fencers */
+UPDATE dbo.TempComp
+SET Country = BFA.Country
+FROM dbo.TempComp AS TC
+LEFT JOIN #BTemp
+ON TC.BFA_ID = #BTemp.BFA_ID
+WHERE TC.Country IS NULL;
 
 /* Check whether any GBR fencers are not on the BFA List */
 SELECT * 
