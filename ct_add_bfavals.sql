@@ -102,27 +102,33 @@ DROP TABLE #BFtotal
 
 CREATE TABLE #BFtotal (
 Rank		Float,
+LastName	nvarchar(255),
 Country		nchar(3),
 BFA_ID		Int,
 BF_points	Float,
 BF_runtot	Float)
 
 INSERT INTO #BFtotal
-SELECT BRN1.Rank, BRN1.Country, BRN1.BFA_ID, BRN1.BF_points, (SELECT SUM(BRN2.BF_points) AS BF_runtot
+SELECT BRN1.Rank, BRN1.LastName, BRN1.Country, BRN1.BFA_ID, BRN1.BF_points, (SELECT SUM(BRN2.BF_points) AS BF_runtot
 FROM dbo.birm_res_new AS BRN2
 WHERE BRN2.Rank >= BRN1.Rank) AS BF_runtot
 FROM dbo.birm_res_new AS BRN1;
 
 /* Remove extra results that were for more fencers than attened */
 DELETE FROM dbo.birm_res_new
-WHERE Rank > @FenNum;
+WHERE FencerID > @FenNum;
 
 /* Update NIF (BF_points) for the overseas fencers.
 The BF_points are:
 +6  when BF_runtot >= 24
 +3  when 23 >= BF_runtot >= 16 
 +1  when 15 >= BF_runtot >= 6
-0   when 5 >= BF_runtot   */
+0   when 5 >= BF_runtot   
+
+Added addition check that the LastName has to match between the 
+#BFtotal and dob.birm_res_new data bases. This means that there
+is a unique solution for each fencer when there are two or more 
+people wit the same result.*/
 
 UPDATE dbo.birm_res_new 
 SET BF_points = (
@@ -132,7 +138,8 @@ CASE
 	FROM #BFtotal AS BFT
 	WHERE Country != 'GBR' AND BFA_ID IS NULL
 	AND dbo.birm_res_new.Rank = BFT.Rank
-	AND BFT.RANK <= @FenNum) >= 24
+	AND dbo.birm_res_new.LastName = BFT.LastName
+	AND dbo.birm_res_new.FencerID <= @FenNum) >= 24
 	THEN '6'
 
 	/* 23 >= runtot >= 16 */
@@ -142,7 +149,8 @@ CASE
 	AND (SELECT BF_runtot FROM #BFtotal AS BFT
 	WHERE Country != 'GBR' AND BFA_ID IS NULL
 	AND dbo.birm_res_new.Rank = BFT.Rank
-	AND BFT.RANK <= @FenNum) >= 16
+	AND dbo.birm_res_new.LastName = BFT.LastName
+	AND dbo.birm_res_new.FencerID <= @FenNum) >= 16
 	THEN '3'
 	
 	/* 15 >= runtot >= 6 */
@@ -152,14 +160,16 @@ CASE
 	AND (SELECT BF_runtot FROM #BFtotal AS BFT
 	WHERE Country != 'GBR' AND BFA_ID IS NULL
 	AND dbo.birm_res_new.Rank = BFT.Rank
-	AND BFT.RANK <= @FenNum) >= 6
+	AND dbo.birm_res_new.LastName = BFT.LastName
+	AND dbo.birm_res_new.FencerID <= @FenNum) >= 6
 	THEN  '1'
 
 	/* 5 >= runtot */
 	WHEN (SELECT BF_runtot FROM #BFtotal AS BFT
 	WHERE Country != 'GBR' AND BFA_ID IS NULL
 	AND dbo.birm_res_new.Rank = BFT.Rank
-	AND BFT.RANK <= @FenNum) <= 5
+	AND dbo.birm_res_new.LastName = BFT.LastName
+	AND dbo.birm_res_new.FencerID <= @FenNum) <= 5
 	THEN '0'
 	
 	/* Otherwise there is no need to change the values */
@@ -168,11 +178,15 @@ CASE
 	)
 WHERE Country != 'GBR' AND BFA_ID IS NULL;
 
-
-SELECT *, BFT.BF_runtot FROM dbo.birm_res_new AS BRN
+/* This section shows what fencers have had their NIF (BF_points)
+modified due to not have a ranking, and by being international fencers,
+and based on who that have beaten as mentioned above */
+SELECT BRN.FencerID, BRN.Rank, BRN.LastName, BRN.FirstName, 
+BRN.Country, BRN.Club, BRN.BF_Points, BFT.BF_runtot FROM dbo.birm_res_new AS BRN
 LEFT JOIN #BFtotal AS BFT
 ON BRN.Rank = BFT.Rank
-WHERE BRN.Country != 'GBR' AND BRN.BFA_ID IS NULL;
+WHERE BRN.Country != 'GBR' AND BRN.BFA_ID IS NULL
+AND BRN.LastName = BFT.LastName;
 
 --SELECT SUM(BF_points) FROM dbo.birm_res_new;
 /* TEST for whether Surnames do still exist in BFA ID database
@@ -190,13 +204,6 @@ FROM BfaTemp
 WHERE BFA_ID IS NULL) AS LastNameTemp
 ON BFA_ID.FirstName = LastNameTemp.FN
 WHERE LEFT(BFA_ID.SurName, 1) = LEFT(LastNameTemp.LN, 1); */
-
-SELECT * 
-FROM BfaTemp
-ORDER BY RankID;
-
-SELECT * 
-FROM dbo.birm_res_new;
 
 SELECT SUM(BF_points) FROM dbo.birm_res_new
 WHERE rank < 117;
