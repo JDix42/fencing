@@ -219,6 +219,22 @@ UPDATE dbo.Comp
 SET TotNIF = @TotNIF
 WHERE Comp_ID = @CompID;
 
+/* Creats variable for the cut-off points for ranking points*/
+DECLARE @CutOff INT = (
+SELECT FencerCutOFF
+FROM dbo.Comp
+WHERE Comp_ID = @CompID);
 
+/* Adds NIF values for ranking points to all fencers */
+UPDATE dbo.birm_res_new
+SET RankingPoints = @TotNif * NIF.Multiplier
+FROM dbo.birm_res_new AS BRN
+LEFT JOIN dbo.nif_mult AS NIF
+ON BRN.Rank = NIF.Place;
+
+/* Removes ranking points from any fencers above the cut-off */
+UPDATE dbo.birm_res_new
+SET RankingPoints = '0'
+WHERE Rank > @CutOff;
 
 
