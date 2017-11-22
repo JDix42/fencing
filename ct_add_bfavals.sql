@@ -1,3 +1,6 @@
+/* Set Comp ID */
+DECLARE @CompID Int = 1;
+
 /* Determine which BFA ranking set to use.
 New rankings sets with different NIF values.
 The rankings are updated every September and 
@@ -14,7 +17,7 @@ NIF_Val		FLOAT,
 MidName		NVARCHAR(255),
 PosID		INT)
 
-DECLARE @Comp_date datetime = (SELECT Date FROM dbo.Comp WHERE Comp_ID = 1)
+DECLARE @Comp_date datetime = (SELECT Date FROM dbo.Comp WHERE Comp_ID = @CompID)
 DECLARE @date1 datetime = '2017-09-01 00:00:00.000'
 DECLARE @date2 datetime = '2017-03-01 00:00:00.000'
 DECLARE @date3 datetime = '2016-09-01 00:00:00.000'
@@ -43,7 +46,7 @@ ELSE
  
 
 /* Determine number of fencers in competition */
-DECLARE @FenNum INT = (SELECT TotalNumFencers FROM dbo.Comp WHERE Comp_ID = 1 )
+DECLARE @FenNum INT = (SELECT TotalNumFencers FROM dbo.Comp WHERE Comp_ID = @CompID )
 
 /* Create temporary table to determine any duplicates */
 DROP TABLE #BTemp
@@ -205,5 +208,17 @@ WHERE BFA_ID IS NULL) AS LastNameTemp
 ON BFA_ID.FirstName = LastNameTemp.FN
 WHERE LEFT(BFA_ID.SurName, 1) = LEFT(LastNameTemp.LN, 1); */
 
+/* Create variable that contains the total NIF (BF_Points)
+for the competition */
+DECLARE @TotNIF INT = (
 SELECT SUM(BF_points) FROM dbo.birm_res_new
-WHERE rank < 117;
+WHERE FencerID < 117);
+
+/* Update dbo.Comp with the total NIF points for the competition */
+UPDATE dbo.Comp
+SET TotNIF = @TotNIF
+WHERE Comp_ID = @CompID;
+
+
+
+
