@@ -107,8 +107,8 @@ AND BFA1.Surname = BFA2.Surname
 GROUP BY BFA1.FirstName, BFA1.Surname) AS RowName
 ON BFA_int.PosID = RowName.RowID
 WHERE RowName.FirstName IS NOT NULL) as BFA
-ON SUBSTRING(UPPER(TC.Lastname), 2, LEN(TC.LastName) - 1) = RTRIM(LTRIM(UPPER(bfa.Surname)))
-AND SUBSTRING(UPPER(TC.FirstName), 2, LEN(TC.FirstName) - 1) = RTRIM(LTRIM(UPPER(bfa.FirstName)));
+ON UPPER(TC.Lastname)= RTRIM(LTRIM(UPPER(bfa.Surname)))
+AND UPPER(TC.FirstName) = RTRIM(LTRIM(UPPER(bfa.FirstName)));
 
 /* Ensure that previous attemps to update BFA_ID and BF_points
 have been removed and changed to NULL */
@@ -161,13 +161,14 @@ DROP TABLE #BFtotal
 CREATE TABLE #BFtotal (
 Rank		Float,
 LastName	nvarchar(255),
+FirstName	nvarchar(255),
 Country		nchar(3),
 BFA_ID		Int,
 BF_points	Float,
 BF_runtot	Float)
 
 INSERT INTO #BFtotal
-SELECT TC1.Rank, TC1.LastName, TC1.Country, TC1.BFA_ID, TC1.BF_points, (SELECT SUM(TC2.BF_points) AS BF_runtot
+SELECT TC1.Rank, TC1.LastName, TC1.FirstName, TC1.Country, TC1.BFA_ID, TC1.BF_points, (SELECT SUM(TC2.BF_points) AS BF_runtot
 FROM dbo.TempComp AS TC2
 WHERE TC2.Rank >= TC1.Rank) AS BF_runtot
 FROM dbo.TempComp AS TC1;
