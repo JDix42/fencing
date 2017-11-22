@@ -237,4 +237,11 @@ UPDATE dbo.birm_res_new
 SET RankingPoints = '0'
 WHERE Rank > @CutOff;
 
+/* Removes all previous results for this competition */
+DELETE FROM dbo.all_results
+WHERE COMP_ID = @CompID;
 
+/* Adds new results to all results competition table */
+INSERT INTO dbo.all_results
+SELECT CT.BFA_ID, @CompID, CT.Rank, CT.RankingPoints, CT.FirstName, CT.LastName, CT.Club
+FROM dbo.birm_res_new AS CT
