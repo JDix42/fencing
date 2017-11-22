@@ -41,3 +41,34 @@ UPDATE fencing_project.dbo.BFA_IDMar2017
 SET Surname = 'Kuznetsov'
 WHERE FirstName = 'Nikita'
 AND UPPER(Surname) = 'KUZNETSKOV';
+
+UPDATE fencing_project.dbo.BFA_IDMar2017
+SET Club = 'None'
+WHERE Club IS NULL
+
+UPDATE fencing_project.dbo.BFA_IDMar2017
+SET FirstName = 'Kieran'
+WHERE FirstName = 'Keiran' AND Surname = 'Patrick';
+
+UPDATE fencing_project.dbo.BFA_IDMar2017
+SET FirstName = 'Jarred'
+WHERE FirstName = 'Jared'
+AND UPPER(Surname) = 'MITTELHOLZER';
+
+UPDATE fencing_project.dbo.BFA_IDSept2016
+SET Surname = 'Kuznetsov'
+WHERE FirstName = 'Nikita'
+AND UPPER(Surname) = 'KUZNETSKOV';
+
+UPDATE fencing_project.dbo.BFA_IDSept2016
+SET Club = 'None'
+WHERE Club IS NULL
+
+UPDATE fencing_project.dbo.BFA_IDSept2016
+SET FirstName = 'Kieran'
+WHERE FirstName = 'Keiran' AND Surname = 'Patrick';
+
+UPDATE fencing_project.dbo.BFA_IDSept2016
+SET FirstName = 'Jarred'
+WHERE FirstName = 'Jared'
+AND UPPER(Surname) = 'MITTELHOLZER';
