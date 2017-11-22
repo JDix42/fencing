@@ -107,8 +107,8 @@ AND BFA1.Surname = BFA2.Surname
 GROUP BY BFA1.FirstName, BFA1.Surname) AS RowName
 ON BFA_int.PosID = RowName.RowID
 WHERE RowName.FirstName IS NOT NULL) as BFA
-ON UPPER(ct.Lastname) = UPPER(bfa.Surname)
-AND LTRIM(UPPER(ct.FirstName)) = LTRIM(UPPER(bfa.FirstName));
+ON SUBSTRING(UPPER(TC.Lastname), 2, LEN(TC.LastName) - 1) = RTRIM(LTRIM(UPPER(bfa.Surname)))
+AND SUBSTRING(UPPER(TC.FirstName), 2, LEN(TC.FirstName) - 1) = RTRIM(LTRIM(UPPER(bfa.FirstName)));
 
 /* Ensure that previous attemps to update BFA_ID and BF_points
 have been removed and changed to NULL */
@@ -118,8 +118,8 @@ SET BFA_ID = NULL, BF_points = NULL
 /* Update values for BFA_ID and BF_points */
 MERGE INTO dbo.TempComp AS TC
 USING #BTemp AS BfaT
-ON (TC.LastName = BfaT.LN
-AND TC.FirstName = BfaT.FN)
+ON (UPPER(TC.LastName) = UPPER(BfaT.LN)
+AND UPPER(TC.FirstName) = UPPER(BfaT.FN))
 WHEN MATCHED THEN 
 UPDATE SET
 TC.BFA_ID = BfaT.BFA_ID,
@@ -129,9 +129,17 @@ TC.BF_points = BfaT.NifVals;
 UPDATE dbo.TempComp
 SET Country = BFA.Country
 FROM dbo.TempComp AS TC
-LEFT JOIN #BTemp
-ON TC.BFA_ID = #BTemp.BFA_ID
+LEFT JOIN #BTemp AS BFA
+ON TC.BFA_ID = BFA.BFA_ID
 WHERE TC.Country IS NULL;
+
+SELECT * FROM TempComp
+WHERE Country IS NULL;
+
+/* Set any unknown country to "GBR" - This could be inaccurate */
+UPDATE dbo.TempComp
+SET Country = 'GBR'
+WHERE Country IS NULL
 
 /* Check whether any GBR fencers are not on the BFA List */
 SELECT * 
@@ -200,7 +208,7 @@ CASE
 	WHERE Country != 'GBR' AND BFA_ID IS NULL
 	AND dbo.TempComp.Rank = BFT.Rank
 	AND dbo.TempComp.LastName = BFT.LastName
-	AND dbo.Temp.FencerID <= @FenNum) >= 16
+	AND dbo.TempComp.FencerID <= @FenNum) >= 16
 	THEN '3'
 	
 	/* 15 >= runtot >= 6 */
