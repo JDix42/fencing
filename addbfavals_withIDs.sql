@@ -1,5 +1,5 @@
 /* Set Comp ID */
-DECLARE @CompID Int = 5;
+DECLARE @CompID Int = 7;
 
 /* Determine which BFA ranking set to use.
 New rankings sets with different NIF values.
@@ -78,6 +78,11 @@ SET LastName = 'DE LANGE'
 WHERE UPPER(LastName) = 'DE LANG'
 AND (UPPER(FirstName) = 'KIERAN')
 
+UPDATE dbo.TempComp
+SET LastName = 'WOOLLARD'
+WHERE UPPER(LastName) = 'WOOLARD'
+AND UPPER(FirstName) = 'JONATHAN'
+
 
 /* Determine number of fencers in competition */
 DECLARE @FenNum INT = (SELECT TotalNumFencers FROM dbo.Comp WHERE Comp_ID = @CompID )
@@ -152,7 +157,8 @@ ON BFA_int.PosID = RowName.RowID
 WHERE RowName.FirstName IS NOT NULL) as BFA
 ON RTRIM(LTRIM(UPPER(TC.Lastname)))= RTRIM(LTRIM(UPPER(bfa.Surname)))
 AND RTRIM(LTRIM(UPPER(TC.FirstName))) = RTRIM(LTRIM(UPPER(bfa.FirstName)))
-WHERE TC.BF_points IS NULL;
+WHERE TC.BF_points IS NULL
+AND ((TC.BFA_ID IS NULL) OR LEN(TC.BFA_ID) < 5);
 
 /* Update BFA_ID based on name  */
 MERGE INTO dbo.TempComp AS TC
@@ -161,9 +167,10 @@ ON (RTRIM(LTRIM(UPPER(TC.LastName))) = RTRIM(LTRIM(UPPER(BfaT.LN)))
 AND RTRIM(LTRIM(UPPER(TC.FirstName))) = RTRIM(LTRIM(UPPER(BfaT.FN))))
 WHEN MATCHED THEN 
 UPDATE SET
-TC.Country = BfaT.Country,
 TC.BFA_ID = BfaT.BFA_ID,
 TC.BF_points = BfaT.NifVals;
+
+SELECT * FROM #BTemp;
 
 -- This will be useful in the future, for now left out as it was more complicated than I thought.
 /* Check previous results to see if it is possible to get the fencer ID */
@@ -181,7 +188,16 @@ UPDATE dbo.TempComp
 SET Country = BFA.Country
 FROM dbo.TempComp AS TC
 LEFT JOIN #BTemp AS BFA
-ON TC.BFA_ID = BFA.BFA_ID;
+ON TC.BFA_ID = BFA.BFA_ID
+WHERE TC.Country IS NULL;
+
+/* Check Nationalities of fencers */
+UPDATE dbo.TempComp
+SET Country = BFA.Country
+FROM dbo.TempComp AS TC
+LEFT JOIN #BTemp2 AS BFA
+ON TC.BFA_ID = BFA.BFA_ID
+WHERE TC.Country IS NULL;
 
 SELECT * FROM TempComp
 WHERE Country IS NULL;

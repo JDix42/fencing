@@ -15,4 +15,6 @@ SET LastName = SUBSTRING(LastName, 0, CHARINDEX(' ', LastName) - 1)
 TRUNCATE TABLE dbo.TempComp
 
 SELECT * FROM dbo.all_results
-WHERE LastName = 'ALDERMAN'
+
+UPDATE dbo.TempComp
+SET Country = 'GBR'
