@@ -4,6 +4,8 @@ FROM dbo.TempComp
 
 SELECT * FROM dbo.TempComp
 
+SELECT * FROM dbo.Comp
+
 UPDATE dbo.TempComp
 SET FirstName = SUBSTRING(LastName, CHARINDEX(' ', LastName), LEN(LastName)) 
 
@@ -13,3 +15,4 @@ SET LastName = SUBSTRING(LastName, 0, CHARINDEX(' ', LastName) - 1)
 TRUNCATE TABLE dbo.TempComp
 
 SELECT * FROM dbo.all_results
+WHERE LastName = 'ALDERMAN'

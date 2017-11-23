@@ -1,5 +1,5 @@
 /* Set Comp ID */
-DECLARE @CompID Int = 3;
+DECLARE @CompID Int = 5;
 
 /* Determine which BFA ranking set to use.
 New rankings sets with different NIF values.
