@@ -83,6 +83,49 @@ AND (UPPER(FirstName) = 'KIERAN')
 DECLARE @FenNum INT = (SELECT TotalNumFencers FROM dbo.Comp WHERE Comp_ID = @CompID )
 
 /* Create temporary table to determine any duplicates */
+DROP TABLE #BTemp2
+
+CREATE TABLE #BTemp2 
+(RankID		FLOAT, 
+LN			nvarchar(255), 
+FN			nvarchar(255),
+BFN			nvarchar(255), 
+Bfa_ID		float, 
+NifVals		float,
+Country     nvarchar(255))
+
+INSERT INTO #BTemp2
+SELECT TC.Rank, TC.LastName, TC.Firstname, bfa.FirstName AS BfaName, bfa.BFA_ID, bfa.NIF_Val, bfa.Country
+FROM dbo.TempComp AS TC
+LEFT JOIN #BFA_set AS BFA
+ON TC.BFA_ID = BFA.BFA_ID;
+
+/* Ensure that previous attemps to update BFA_ID and BF_points
+have been removed and changed to NULL */
+UPDATE dbo.TempComp
+SET BF_points = NULL;
+
+/* Update values for BFA_ID and BF_points */
+MERGE INTO dbo.TempComp AS TC
+USING #BTemp2 AS BfaT
+ON (TC.BFA_ID = BfaT.BFA_ID)
+WHEN MATCHED THEN 
+UPDATE SET
+TC.BF_points = BfaT.NifVals;
+
+/* Check Nationalities of fencers */
+UPDATE dbo.TempComp
+SET Country = BFA.Country
+FROM dbo.TempComp AS TC
+LEFT JOIN #BTemp2 AS BFA
+ON TC.BFA_ID = BFA.BFA_ID
+WHERE TC.Country IS NULL;
+
+/* Determine BFA ID for any one where the the BFA ID from 
+the raw results does not match anyone in the #BFA_set
+table */
+
+/* Create temporary table to determine any duplicates */
 DROP TABLE #BTemp
 
 CREATE TABLE #BTemp 
@@ -97,29 +140,48 @@ Country     nvarchar(255))
 INSERT INTO #BTemp
 SELECT TC.Rank, TC.LastName, TC.Firstname, bfa.FirstName AS BfaName, bfa.BFA_ID, bfa.NIF_Val, bfa.Country
 FROM dbo.TempComp AS TC
-LEFT JOIN #BFA_set AS BFA
-ON TC.BFA_ID = BFA.BFA_ID;
+LEFT JOIN (SELECT BFA_int.FirstName, BFA_int.Surname, BFA_int.BFA_ID, BFA_int.NIF_Val, BFA_int.Country 
+FROM #BFA_set AS BFA_int
+LEFT JOIN (SELECT BFA1.FirstName, BFA1.Surname, MIN(BFA1.PosID) AS RowID
+FROM #BFA_set AS BFA1
+LEFT JOIN #BFA_set AS BFA2
+ON BFA1.FirstName = BFA2.FirstName
+AND BFA1.Surname = BFA2.Surname
+GROUP BY BFA1.FirstName, BFA1.Surname) AS RowName
+ON BFA_int.PosID = RowName.RowID
+WHERE RowName.FirstName IS NOT NULL) as BFA
+ON RTRIM(LTRIM(UPPER(TC.Lastname)))= RTRIM(LTRIM(UPPER(bfa.Surname)))
+AND RTRIM(LTRIM(UPPER(TC.FirstName))) = RTRIM(LTRIM(UPPER(bfa.FirstName)))
+WHERE TC.BF_points IS NULL;
 
-/* Ensure that previous attemps to update BFA_ID and BF_points
-have been removed and changed to NULL */
-UPDATE dbo.TempComp
-SET BF_points = NULL;
-
-/* Update values for BFA_ID and BF_points */
+/* Update BFA_ID based on name  */
 MERGE INTO dbo.TempComp AS TC
 USING #BTemp AS BfaT
-ON (TC.BFA_ID = BfaT.BFA_ID)
+ON (RTRIM(LTRIM(UPPER(TC.LastName))) = RTRIM(LTRIM(UPPER(BfaT.LN)))
+AND RTRIM(LTRIM(UPPER(TC.FirstName))) = RTRIM(LTRIM(UPPER(BfaT.FN))))
 WHEN MATCHED THEN 
 UPDATE SET
+TC.Country = BfaT.Country,
+TC.BFA_ID = BfaT.BFA_ID,
 TC.BF_points = BfaT.NifVals;
+
+-- This will be useful in the future, for now left out as it was more complicated than I thought.
+/* Check previous results to see if it is possible to get the fencer ID */
+/*MERGE INTO dbo.TempComp AS TC
+USING dbo.all_results AS AR
+ON (RTRIM(LTRIM(UPPER(AR.FirstName))) = RTRIM(LTRIM(UPPER(TC.FirstName)))
+AND RTRIM(LTRIM(UPPER(AR.LastName))) = RTRIM(LTRIM(UPPER(TC.LastName)))
+AND Comp_ID != @CompID)
+WHEN MATCHED THEN
+UPDATE SET
+TC.BFA_ID = AR.BFA_ID; */
 
 /* Check Nationalities of fencers */
 UPDATE dbo.TempComp
 SET Country = BFA.Country
 FROM dbo.TempComp AS TC
 LEFT JOIN #BTemp AS BFA
-ON TC.BFA_ID = BFA.BFA_ID
-WHERE TC.Country IS NULL;
+ON TC.BFA_ID = BFA.BFA_ID;
 
 SELECT * FROM TempComp
 WHERE Country IS NULL;
@@ -306,5 +368,6 @@ WHERE COMP_ID = @CompID;
 
 /* Adds new results to all results competition table */
 INSERT INTO dbo.all_results
-SELECT TC.BFA_ID, @CompID, TC.Rank, TC.RankingPoints, TC.FirstName, TC.LastName, TC.Club
+SELECT TC.BFA_ID, @CompID, TC.Rank, TC.RankingPoints, RTRIM(LTRIM(UPPER(TC.FirstName))), 
+	RTRIM(LTRIM(UPPER(TC.LastName))), TC.Club
 FROM dbo.TempComp AS TC

@@ -107,8 +107,8 @@ AND BFA1.Surname = BFA2.Surname
 GROUP BY BFA1.FirstName, BFA1.Surname) AS RowName
 ON BFA_int.PosID = RowName.RowID
 WHERE RowName.FirstName IS NOT NULL) as BFA
-ON UPPER(TC.Lastname)= RTRIM(LTRIM(UPPER(bfa.Surname)))
-AND UPPER(TC.FirstName) = RTRIM(LTRIM(UPPER(bfa.FirstName)));
+ON RTRIM(LTRIM(UPPER(TC.Lastname)))= RTRIM(LTRIM(UPPER(bfa.Surname)))
+AND RTRIM(LTRIM(UPPER(TC.FirstName))) = RTRIM(LTRIM(UPPER(bfa.FirstName)));
 
 /* Ensure that previous attemps to update BFA_ID and BF_points
 have been removed and changed to NULL */
@@ -118,8 +118,8 @@ SET BFA_ID = NULL, BF_points = NULL
 /* Update values for BFA_ID and BF_points */
 MERGE INTO dbo.TempComp AS TC
 USING #BTemp AS BfaT
-ON (UPPER(TC.LastName) = UPPER(BfaT.LN)
-AND UPPER(TC.FirstName) = UPPER(BfaT.FN))
+ON (RTRIM(LTRIM(UPPER(TC.LastName))) = RTRIM(LTRIM(UPPER(BfaT.LN)))
+AND RTRIM(LTRIM(UPPER(TC.FirstName))) = RTRIM(LTRIM(UPPER(BfaT.FN))))
 WHEN MATCHED THEN 
 UPDATE SET
 TC.BFA_ID = BfaT.BFA_ID,
@@ -299,5 +299,6 @@ WHERE COMP_ID = @CompID;
 
 /* Adds new results to all results competition table */
 INSERT INTO dbo.all_results
-SELECT TC.BFA_ID, @CompID, TC.Rank, TC.RankingPoints, TC.FirstName, TC.LastName, TC.Club
+SELECT TC.BFA_ID, @CompID, TC.Rank, TC.RankingPoints, RTRIM(LTRIM(UPPER(TC.FirstName))), 
+	RTRIM(LTRIM(UPPER(TC.LastName))), TC.Club
 FROM dbo.TempComp AS TC
