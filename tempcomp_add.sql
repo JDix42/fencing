@@ -1,5 +1,5 @@
 /* Set Comp ID */
-DECLARE @CompID Int = 1;
+DECLARE @CompID Int = 16;
 
 /* Determine which BFA ranking set to use.
 New rankings sets with different NIF values.
@@ -55,8 +55,9 @@ SET FirstName = LTRIM(FirstName);
 
 UPDATE dbo.TempComp
 SET FirstName = 'Nicholas'
-WHERE FirstName = 'Nick'
-AND (UPPER(LastName) = 'MORT' OR UPPER(LastName) = 'DOOTSON');
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'Nick'
+AND (REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'MORT' 
+OR REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'DOOTSON');
 
 UPDATE dbo.TempComp
 SET FirstName = 'Joshua'
@@ -78,6 +79,36 @@ SET LastName = 'DE LANGE'
 WHERE UPPER(LastName) = 'DE LANG'
 AND (UPPER(FirstName) = 'KIERAN')
 
+UPDATE dbo.TempComp
+SET LastName = 'WOOLLARD'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'WOOLARD'
+AND REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'JONATHAN'
+
+UPDATE dbo.TempComp
+SET LastName = 'MARROQUÍN'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '')  = 'MARROQUIN'
+AND REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'DIEGO'
+
+UPDATE dbo.TempComp
+SET LastName = 'MACCHIAROLA',
+FirstName = 'ALESSANDRO'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '')  = 'MACHIAROLA'
+AND REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'ALLESSANDRO'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Dominic'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'DE ALMEIDA'
+AND REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'DOMINC'
+
+UPDATE dbo.TempComp
+SET LastName ='VAN AARSEN'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'VAN-AARSE'
+AND REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'GEERT'
+
+UPDATE dbo.TempComp
+SET FirstName ='Tony'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'BARTLETT'
+AND REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'ANTHONY'
 
 /* Determine number of fencers in competition */
 DECLARE @FenNum INT = (SELECT TotalNumFencers FROM dbo.Comp WHERE Comp_ID = @CompID )
@@ -107,8 +138,8 @@ AND BFA1.Surname = BFA2.Surname
 GROUP BY BFA1.FirstName, BFA1.Surname) AS RowName
 ON BFA_int.PosID = RowName.RowID
 WHERE RowName.FirstName IS NOT NULL) as BFA
-ON RTRIM(LTRIM(UPPER(TC.Lastname)))= RTRIM(LTRIM(UPPER(bfa.Surname)))
-AND RTRIM(LTRIM(UPPER(TC.FirstName))) = RTRIM(LTRIM(UPPER(bfa.FirstName)));
+ON REPLACE(RTRIM(LTRIM(UPPER(TC.Lastname))), NCHAR(160), '') = REPLACE(RTRIM(LTRIM(UPPER(bfa.Surname))), NCHAR(160), '')
+AND REPLACE(RTRIM(LTRIM(UPPER(TC.FirstName))), NCHAR(160), '') = REPLACE(RTRIM(LTRIM(UPPER(bfa.FirstName))), NCHAR(160), '') ;
 
 /* Ensure that previous attemps to update BFA_ID and BF_points
 have been removed and changed to NULL */
@@ -118,8 +149,8 @@ SET BFA_ID = NULL, BF_points = NULL
 /* Update values for BFA_ID and BF_points */
 MERGE INTO dbo.TempComp AS TC
 USING #BTemp AS BfaT
-ON (RTRIM(LTRIM(UPPER(TC.LastName))) = RTRIM(LTRIM(UPPER(BfaT.LN)))
-AND RTRIM(LTRIM(UPPER(TC.FirstName))) = RTRIM(LTRIM(UPPER(BfaT.FN))))
+ON (REPLACE(RTRIM(LTRIM(UPPER(TC.LastName))), NCHAR(160), '') = REPLACE(RTRIM(LTRIM(UPPER(BfaT.LN))), NCHAR(160), '')
+AND REPLACE(RTRIM(LTRIM(UPPER(TC.FirstName))), NCHAR(160), '') = REPLACE(RTRIM(LTRIM(UPPER(BfaT.FN))), NCHAR(160), ''))
 WHEN MATCHED THEN 
 UPDATE SET
 TC.BFA_ID = BfaT.BFA_ID,
@@ -299,6 +330,6 @@ WHERE COMP_ID = @CompID;
 
 /* Adds new results to all results competition table */
 INSERT INTO dbo.all_results
-SELECT TC.BFA_ID, @CompID, TC.Rank, TC.RankingPoints, RTRIM(LTRIM(UPPER(TC.FirstName))), 
-	RTRIM(LTRIM(UPPER(TC.LastName))), TC.Club
+SELECT TC.BFA_ID, @CompID, TC.Rank, TC.RankingPoints, REPLACE(RTRIM(LTRIM(UPPER(TC.FirstName))), NCHAR(160), ''), 
+	REPLACE(RTRIM(LTRIM(UPPER(TC.LastName))), NCHAR(160), ''), TC.Club
 FROM dbo.TempComp AS TC
