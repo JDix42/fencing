@@ -15,12 +15,26 @@ SET LastName = SUBSTRING(LastName, 0, CHARINDEX(',', LastName))
 TRUNCATE TABLE dbo.TempComp
 
 SELECT * FROM dbo.all_results
+ORDER BY COMP_ID
 
 UPDATE dbo.TempComp
 SET Country = 'GBR'
 WHERE REPLACE(RTRIM(LTRIM(Country)), NCHAR(160), '') = 'UK'
 
+SELECT * FROM dbo.all_results
+
 SELECT REPLACE(UPPER(LastName), NCHAR(160), '')
 FROM dbo.TempComp
-WHERE REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'VAN-AARSE'
-AND REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'GEERT'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'ROBERT'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'WILLIAMS'
+
+SELECT * FROM BFA_IDMar2017
+
+UPDATE dbo.BFA_IDMar2017
+SET FirstName = SUBSTRING(LTRIM(FirstName), 0, CHARINDEX(' ', LTRIM(FirstName))),
+MidName = SUBSTRING(LTRIM(FirstName), CHARINDEX(' ', LTRIM(FirstName)), LEN(FirstName))
+WHERE CHARINDEX(' ', LTRIM(FirstName)) > 0;
+
+SELECT MAX(Comp_ID)
+FROM dbo.Comp
+
