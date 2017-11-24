@@ -149,6 +149,21 @@ SET FirstName = 'Matthew'
 WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'MATT'
 AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'POWELL'
 
+UPDATE dbo.TempComp
+SET LastName = 'PHILLIPS LANGLEY'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'THOMAS'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'PHILLIPS-LANGLEY'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Joshua'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'JOSH'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'SAMBROOK'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Jeffery'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'JEFF'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'KIY'
+
 /* Determine number of fencers in competition */
 DECLARE @FenNum INT = (SELECT TotalNumFencers FROM dbo.Comp WHERE Comp_ID = @CompID )
 

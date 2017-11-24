@@ -18,10 +18,11 @@ SELECT * FROM dbo.all_results
 ORDER BY COMP_ID
 
 UPDATE dbo.TempComp
-SET Country = 'GBR'
-WHERE REPLACE(RTRIM(LTRIM(Country)), NCHAR(160), '') = 'UK'
+SET Country = 'ITA'
+WHERE REPLACE(RTRIM(LTRIM(Country)), NCHAR(160), '') = 'IT'
 
-SELECT * FROM dbo.all_results
+SELECT * FROM dbo.BFA_IDMar2017
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'CHRIS'
 
 SELECT REPLACE(UPPER(LastName), NCHAR(160), '')
 FROM dbo.TempComp
@@ -35,6 +36,5 @@ SET FirstName = SUBSTRING(LTRIM(FirstName), 0, CHARINDEX(' ', LTRIM(FirstName)))
 MidName = SUBSTRING(LTRIM(FirstName), CHARINDEX(' ', LTRIM(FirstName)), LEN(FirstName))
 WHERE CHARINDEX(' ', LTRIM(FirstName)) > 0;
 
-SELECT MAX(Comp_ID)
-FROM dbo.Comp
-
+DELETE dbo.TempComp
+WHERE FencerID = 16

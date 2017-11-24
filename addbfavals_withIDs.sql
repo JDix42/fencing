@@ -148,6 +148,11 @@ SET FirstName = 'Matthew'
 WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'MATT'
 AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'POWELL'
 
+UPDATE dbo.TempComp
+SET LastName = 'PHILLIPS LANGLEY'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'THOMAS'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'PHILLIPS-LANGLEY'
+
 /* Determine number of fencers in competition */
 DECLARE @FenNum INT = (SELECT TotalNumFencers FROM dbo.Comp WHERE Comp_ID = @CompID )
 
@@ -219,8 +224,8 @@ AND BFA1.Surname = BFA2.Surname
 GROUP BY BFA1.FirstName, BFA1.Surname) AS RowName
 ON BFA_int.PosID = RowName.RowID
 WHERE RowName.FirstName IS NOT NULL) as BFA
-ON REPLACE(RTRIM(LTRIM(UPPER(TC.Lastname))), NCHAR(160), '')= RTRIM(LTRIM(UPPER(bfa.Surname)))
-AND REPLACE(RTRIM(LTRIM(UPPER(TC.FirstName))), NCHAR(160), '') = RTRIM(LTRIM(UPPER(bfa.FirstName)))
+ON REPLACE(RTRIM(LTRIM(UPPER(TC.Lastname))), NCHAR(160), '')= REPLACE(RTRIM(LTRIM(UPPER(bfa.Surname))), NCHAR(160), '')
+AND REPLACE(RTRIM(LTRIM(UPPER(TC.FirstName))), NCHAR(160), '') = REPLACE(RTRIM(LTRIM(UPPER(bfa.FirstName))), NCHAR(160), '')
 WHERE TC.BF_points IS NULL
 AND ((TC.BFA_ID IS NULL) OR LEN(TC.BFA_ID) < 5 OR LEN(TC.BFA_ID) > 6);
 
