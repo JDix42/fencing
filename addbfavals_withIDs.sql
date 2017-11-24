@@ -1,5 +1,9 @@
-/* Set Comp ID */
-DECLARE @CompID Int = 15;
+/* Automatically choose highest comp_ID */
+DECLARE @CompID Int = (SELECT MAX(Comp_ID)
+					FROM dbo.Comp);
+
+/* Manually Choose Comp_ID */
+--DECLARE @CompID Int = ##
 
 /* Determine which BFA ranking set to use.
 New rankings sets with different NIF values.
@@ -90,9 +94,59 @@ AND REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'DIEGO'
 
 UPDATE dbo.TempComp
 SET LastName = 'MACCHIAROLA',
-FirstName = 'Alessandro'
+FirstName = 'ALESSANDRO'
 WHERE REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '')  = 'MACHIAROLA'
-AND REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'ALLESANDRO'
+AND REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'ALLESSANDRO'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Dominic'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'DE ALMEIDA'
+AND REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'DOMINC'
+
+UPDATE dbo.TempComp
+SET LastName ='VAN AARSEN'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'VAN-AARSE'
+AND REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'GEERT'
+
+UPDATE dbo.TempComp
+SET FirstName ='Tony'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'BARTLETT'
+AND REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'ANTHONY'
+
+UPDATE dbo.TempComp
+SET FirstName = 'James'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'DAVIS'
+AND REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'JAMES-ANDREW'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Ben'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'BENJAMIN'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'PEGGS'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Rafael', MidName = 'Rhys', LastName = 'Pollitt'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'RAFAEL'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'RHYS POLLITT'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Rafael', MidName = 'Rhys', LastName = 'Pollitt'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') LIKE 'POLLITT%'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'RHY'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Rob'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'ROBERT'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'WILLIAMS'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Alex'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'ALEXANDRE'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'SCHLINDWEIN'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Matthew'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'MATT'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'POWELL'
 
 /* Determine number of fencers in competition */
 DECLARE @FenNum INT = (SELECT TotalNumFencers FROM dbo.Comp WHERE Comp_ID = @CompID )
@@ -356,12 +410,25 @@ DECLARE @TotNIF_Num INT = (FLOOR( 0.25 * @FenNum))
 DECLARE @TotNIF INT =(
 CASE 
 	WHEN @TotNIF_BFA > @TotNIF_Num
+	AND (SELECT ShortName FROM dbo.Comp
+		WHERE Comp_ID = @CompID) = 'NatChamp'
+	THEN @TotNIF_BFA * 1.2
+
+	WHEN @TotNIF_BFA < @TotNIF_Num
+	AND (SELECT ShortName FROM dbo.Comp
+		WHERE Comp_ID = @CompID) = 'NatChamp'
+	THEN @TotNIF_Num * 1.2
+
+	WHEN @TotNIF_BFA > @TotNIF_Num
+	AND (SELECT ShortName FROM dbo.Comp
+		WHERE Comp_ID = @CompID) != 'NatChamp'
 	THEN @TotNIF_BFA
 
 	ELSE
 	@TotNIF_Num
 END
 )
+
 
 /* Update dbo.Comp with the total NIF points for the competition */
 UPDATE dbo.Comp
