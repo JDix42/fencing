@@ -57,30 +57,32 @@ WHERE CHARINDEX(' ', LTRIM(FirstName)) > 0;
 UPDATE dbo.TempComp
 SET FirstName = LTRIM(FirstName);
 
+
 UPDATE dbo.TempComp
 SET FirstName = 'Nicholas'
-WHERE FirstName = 'Nick'
-AND (UPPER(LastName) = 'MORT' OR UPPER(LastName) = 'DOOTSON');
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'Nick'
+AND (REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'MORT' 
+OR REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'DOOTSON');
 
 UPDATE dbo.TempComp
 SET FirstName = 'Joshua'
-WHERE FirstName = 'Josh'
-AND (UPPER(LastName) = 'BURN');
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'JOSH'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'BURN';
 
 UPDATE dbo.TempComp
 SET FirstName = 'Daniel'
-WHERE FirstName = 'Dan'
-AND (UPPER(LastName) = 'ELLIKER');
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'DAN'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'ELLIKER';
 
 UPDATE dbo.TempComp
 SET FirstName = 'Kevin'
-WHERE FirstName = 'Kev'
-AND (UPPER(LastName) = 'MILNE');
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'KEV'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'MILNE';
 
 UPDATE dbo.TempComp
 SET LastName = 'DE LANGE'
-WHERE UPPER(LastName) = 'DE LANG'
-AND (UPPER(FirstName) = 'KIERAN')
+WHERE REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'DE LANG'
+AND REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'KIERAN'
 
 UPDATE dbo.TempComp
 SET LastName = 'WOOLLARD'
@@ -152,6 +154,66 @@ UPDATE dbo.TempComp
 SET LastName = 'PHILLIPS LANGLEY'
 WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'THOMAS'
 AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'PHILLIPS-LANGLEY'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Joshua'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'JOSH'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'SAMBROOK'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Jeffrey'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'JEFF'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'KIY'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Samuel'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'SAM'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'SMITH'
+
+UPDATE dbo.TempComp
+SET FirstName = 'William'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'WILL'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'GALLIMORE-TALLEN'
+
+UPDATE dbo.TempComp
+SET LastName = 'Henderson'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'ROSS'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))),NCHAR(160), '') = 'HENDERSONNBSP;'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Samuel'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'SAM'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'FINCH'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Sebastian'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'SEBASTAIN'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'SACCHI-WILSON'
+
+UPDATE dbo.TempComp
+SET LastName = 'De Almeida'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'DE-ALMEIDA'
+AND REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'DOMINIC'
+
+UPDATE dbo.TempComp
+SET LastName = 'Gillman'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'JOHN'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'GILMAN'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Isaac'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'ISSAC'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'JOLLEY'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Daniel'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'DAN'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'HEPNER'
+
+UPDATE dbo.TempComp
+SET BFA_ID = '30613'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'PATRICK'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'DEMPSEY'
 
 /* Determine number of fencers in competition */
 DECLARE @FenNum INT = (SELECT TotalNumFencers FROM dbo.Comp WHERE Comp_ID = @CompID )
@@ -238,6 +300,51 @@ WHEN MATCHED THEN
 UPDATE SET
 TC.BFA_ID = BfaT.BFA_ID,
 TC.BF_points = BfaT.NifVals;
+
+ 
+/* Create table to obtain values when a BFA_ID does not return
+NIF values - potential typo in the BFA_ID */
+DROP TABLE #BTemp3
+
+CREATE TABLE #BTemp3 
+(RankID		FLOAT, 
+LN			nvarchar(255), 
+FN			nvarchar(255),
+BFN			nvarchar(255), 
+Bfa_ID		float, 
+NifVals		float,
+Country     nvarchar(255))
+
+INSERT INTO #BTemp3
+SELECT TC.Rank, TC.LastName, TC.Firstname, bfa.FirstName AS BfaName, bfa.BFA_ID, bfa.NIF_Val, bfa.Country
+FROM dbo.TempComp AS TC
+LEFT JOIN (SELECT BFA_int.FirstName, BFA_int.Surname, BFA_int.BFA_ID, BFA_int.NIF_Val, BFA_int.Country 
+FROM #BFA_set AS BFA_int
+LEFT JOIN (SELECT BFA1.FirstName, BFA1.Surname, MIN(BFA1.PosID) AS RowID
+FROM #BFA_set AS BFA1
+LEFT JOIN #BFA_set AS BFA2
+ON BFA1.FirstName = BFA2.FirstName
+AND BFA1.Surname = BFA2.Surname
+GROUP BY BFA1.FirstName, BFA1.Surname) AS RowName
+ON BFA_int.PosID = RowName.RowID
+WHERE RowName.FirstName IS NOT NULL) as BFA
+ON REPLACE(RTRIM(LTRIM(UPPER(TC.Lastname))), NCHAR(160), '')= REPLACE(RTRIM(LTRIM(UPPER(bfa.Surname))), NCHAR(160), '')
+AND REPLACE(RTRIM(LTRIM(UPPER(TC.FirstName))), NCHAR(160), '') = REPLACE(RTRIM(LTRIM(UPPER(bfa.FirstName))), NCHAR(160), '')
+WHERE TC.BF_points IS NULL
+AND (TC.BFA_ID IS NOT NULL)
+AND bfa.NIF_Val IS NOT NULL;
+
+
+
+/* Update BFA_ID based on name when the BFA_ID does not exist on the database */
+MERGE INTO dbo.TempComp AS TC
+USING #BTemp3 AS BfaT
+ON (REPLACE(RTRIM(LTRIM(UPPER(TC.LastName))), NCHAR(160), '') = REPLACE(RTRIM(LTRIM(UPPER(BfaT.LN))), NCHAR(160), '')
+AND REPLACE(RTRIM(LTRIM(UPPER(TC.FirstName))), NCHAR(160), '') = REPLACE(RTRIM(LTRIM(UPPER(BfaT.FN))), NCHAR(160), ''))
+WHEN MATCHED THEN 
+UPDATE SET
+TC.BFA_ID = BfaT.BFA_ID,
+TC.BF_points = BfaT.NifVals; 
 
 -- This will be useful in the future, for now left out as it was more complicated than I thought.
 /* Check previous results to see if it is possible to get the fencer ID */
