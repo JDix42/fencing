@@ -65,23 +65,23 @@ OR REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'DOOTSON');
 
 UPDATE dbo.TempComp
 SET FirstName = 'Joshua'
-WHERE FirstName = 'Josh'
-AND (UPPER(LastName) = 'BURN');
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'JOSH'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'BURN';
 
 UPDATE dbo.TempComp
 SET FirstName = 'Daniel'
-WHERE FirstName = 'Dan'
-AND (UPPER(LastName) = 'ELLIKER');
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'DAN'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'ELLIKER';
 
 UPDATE dbo.TempComp
 SET FirstName = 'Kevin'
-WHERE FirstName = 'Kev'
-AND (UPPER(LastName) = 'MILNE');
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'KEV'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'MILNE';
 
 UPDATE dbo.TempComp
 SET LastName = 'DE LANGE'
-WHERE UPPER(LastName) = 'DE LANG'
-AND (UPPER(FirstName) = 'KIERAN')
+WHERE REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'DE LANG'
+AND REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'KIERAN'
 
 UPDATE dbo.TempComp
 SET LastName = 'WOOLLARD'
@@ -160,9 +160,54 @@ WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'JOSH'
 AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'SAMBROOK'
 
 UPDATE dbo.TempComp
-SET FirstName = 'Jeffery'
+SET FirstName = 'Jeffrey'
 WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'JEFF'
 AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'KIY'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Samuel'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'SAM'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'SMITH'
+
+UPDATE dbo.TempComp
+SET FirstName = 'William'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'WILL'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'GALLIMORE-TALLEN'
+
+UPDATE dbo.TempComp
+SET LastName = 'Henderson'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'ROSS'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))),NCHAR(160), '') = 'HENDERSONNBSP;'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Samuel'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'SAM'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'FINCH'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Sebastian'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'SEBASTAIN'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'SACCHI-WILSON'
+
+UPDATE dbo.TempComp
+SET LastName = 'De Almeida'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'DE-ALMEIDA'
+AND REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'DOMINIC'
+
+UPDATE dbo.TempComp
+SET LastName = 'Gillman'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'JOHN'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'GILMAN'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Isaac'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'ISSAC'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'JOLLEY'
+
+UPDATE dbo.TempComp
+SET FirstName = 'Daniel'
+WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'DAN'
+AND REPLACE(RTRIM(LTRIM(UPPER(LastName))), NCHAR(160), '') = 'HEPNER'
 
 /* Determine number of fencers in competition */
 DECLARE @FenNum INT = (SELECT TotalNumFencers FROM dbo.Comp WHERE Comp_ID = @CompID )
