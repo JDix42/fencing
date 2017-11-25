@@ -1,3 +1,6 @@
+/* Note - this is a set of commands to make debugging/checking 
+that the database is correct easier. DO NOT run the whole script */
+
 SELECT SUBSTRING(LastName, CHARINDEX(' ', LastName), LEN(LastName)) AS FirstName,
 		SUBSTRING(LastName, 0, CHARINDEX(' ', LastName) - 1) AS LastName
 FROM dbo.TempComp
@@ -5,6 +8,10 @@ FROM dbo.TempComp
 SELECT * FROM dbo.TempComp
 
 SELECT * FROM dbo.Comp
+
+UPDATE dbo.TempComp
+SET BF_Points = NULL
+WHERE BF_Points = '0'
 
 UPDATE dbo.TempComp
 SET FirstName = SUBSTRING(LastName, CHARINDEX(',', LastName) + 1, LEN(LastName)) 
@@ -25,8 +32,8 @@ SELECT * FROM dbo.all_results
 ORDER BY COMP_ID
 
 UPDATE dbo.TempComp
-SET Country = 'RSA'
-WHERE REPLACE(RTRIM(LTRIM(Country)), NCHAR(160), '') = 'RS'
+SET Country = 'AUS'
+WHERE REPLACE(RTRIM(LTRIM(Country)), NCHAR(160), '') = 'AU'
 
 SELECT * FROM dbo.BFA_IDMar2017
 WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'CHRIS'
