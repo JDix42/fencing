@@ -1,9 +1,9 @@
 /* Automatically choose highest comp_ID */
-DECLARE @CompID Int = (SELECT MAX(Comp_ID)
-					FROM dbo.Comp);
+--DECLARE @CompID Int = (SELECT MAX(Comp_ID)
+--					FROM dbo.Comp);
 
 /* Manually Choose Comp_ID */
---DECLARE @CompID Int = ##
+DECLARE @CompID Int = ##
 
 /* Determine which BFA ranking set to use.
 New rankings sets with different NIF values.

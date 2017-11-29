@@ -8,6 +8,7 @@ FROM dbo.TempComp
 SELECT * FROM dbo.TempComp
 
 SELECT * FROM dbo.Comp
+ORDER BY Date;
 
 UPDATE dbo.TempComp
 SET BF_Points = NULL
@@ -32,8 +33,8 @@ SELECT * FROM dbo.all_results
 ORDER BY COMP_ID
 
 UPDATE dbo.TempComp
-SET Country = 'AUS'
-WHERE REPLACE(RTRIM(LTRIM(Country)), NCHAR(160), '') = 'AU'
+SET Country = 'IRL'
+WHERE REPLACE(RTRIM(LTRIM(Country)), NCHAR(160), '') = 'IR'
 
 SELECT * FROM dbo.BFA_IDMar2017
 WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'CHRIS'
