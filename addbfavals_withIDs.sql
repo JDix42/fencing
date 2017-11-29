@@ -1,9 +1,9 @@
 /* Automatically choose highest comp_ID */
-DECLARE @CompID Int = (SELECT MAX(Comp_ID)
-					FROM dbo.Comp);
+--DECLARE @CompID Int = (SELECT MAX(Comp_ID)
+--					FROM dbo.Comp);
 
 /* Manually Choose Comp_ID */
---DECLARE @CompID Int = ##
+DECLARE @CompID Int = 27
 
 /* Determine which BFA ranking set to use.
 New rankings sets with different NIF values.
@@ -77,6 +77,86 @@ have been removed and changed to NULL */
 UPDATE dbo.TempComp
 SET BF_points = NULL;
 
+/* Check where there is more than one entry for the same BFA_ID */
+/*UPDATE #BTemp2
+SET BFN = (
+CASE
+	WHEN ( SELECT COUNT(B1.BFA_ID) 
+	FROM #BTemp2 AS B1
+	LEFT JOIN #BTemp2 AS B2
+	ON B1.BFA_ID = B2.BFA_ID
+	GROUP BY B1.BFA_ID
+	HAVING COUNT(B1.BFA_ID) >=2) >= 2
+	THEN
+	'NULL'
+
+	ELSE
+	BFN
+END
+),
+
+BFA_ID = (
+CASE
+	WHEN ( SELECT COUNT(B1.BFA_ID) 
+	FROM #BTemp2 AS B1
+	LEFT JOIN #BTemp2 AS B2
+	ON B1.BFA_ID = B2.BFA_ID
+	GROUP BY B1.BFA_ID
+	HAVING COUNT(B1.BFA_ID) >=2) >= 2
+	THEN
+	'NULL'
+
+	ELSE
+	BFA_ID
+END
+),
+NifVals = (
+CASE
+	WHEN ( SELECT COUNT(B1.BFA_ID) 
+	FROM #BTemp2 AS B1
+	LEFT JOIN #BTemp2 AS B2
+	ON B1.BFA_ID = B2.BFA_ID
+	GROUP BY B1.BFA_ID
+	HAVING COUNT(B1.BFA_ID) >=2) >= 2
+	THEN
+	'NULL'
+
+	ELSE
+	NifVals
+END
+),
+Country = (
+CASE
+	WHEN ( SELECT COUNT(B1.BFA_ID) 
+	FROM #BTemp2 AS B1
+	LEFT JOIN #BTemp2 AS B2
+	ON B1.BFA_ID = B2.BFA_ID
+	GROUP BY B1.BFA_ID
+	HAVING COUNT(B1.BFA_ID) >=2) >= 2
+	THEN
+	'NULL'
+
+	ELSE
+	Country
+END
+) */
+UPDATE #BTemp2
+SET BFN = NULL,
+BFA_ID = NULL,
+NifVals = NULL,
+Country = NULL
+SELECT * FROM #BTemp2 AS BT
+WHERE(BT.BFA_ID) = (
+SELECT B1.BFA_ID
+FROM #BTemp2 AS B1
+LEFT JOIN #BTemp2 AS B2
+ON B1.BFA_ID = B2.BFA_ID
+GROUP BY B1.BFA_ID
+HAVING COUNT(B1.BFA_ID) >=2)
+
+
+SELECT * FROM #BTemp2
+ORDER BY RankID
 /* Update values for BFA_ID and BF_points */
 MERGE INTO dbo.TempComp AS TC
 USING #BTemp2 AS BfaT
