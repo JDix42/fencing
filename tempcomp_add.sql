@@ -1,9 +1,9 @@
 /* Automatically choose highest comp_ID */
---DECLARE @CompID Int = (SELECT MAX(Comp_ID)
---					FROM dbo.Comp);
+DECLARE @CompID Int = (SELECT MAX(Comp_ID)
+					FROM dbo.Comp);
 
 /* Manually Choose Comp_ID */
-DECLARE @CompID Int = ##
+--DECLARE @CompID Int = 1
 
 /* Determine which BFA ranking set to use.
 New rankings sets with different NIF values.
@@ -167,7 +167,7 @@ CASE
 	/* runtot >= 24 */
 	WHEN (SELECT BF_runtot
 	FROM #BFtotal AS BFT
-	WHERE Country != 'GBR' AND BFA_ID IS NULL
+	WHERE Country NOT IN ('GBR', 'SCO', 'WAL', 'NIR', 'ENG') AND BFA_ID IS NULL
 	AND dbo.TempComp.Rank = BFT.Rank
 	AND dbo.TempComp.LastName = BFT.LastName
 	AND dbo.TempComp.FencerID <= @FenNum) >= 24
@@ -175,10 +175,10 @@ CASE
 
 	/* 23 >= runtot >= 16 */
 	WHEN 23 >= (SELECT BF_runtot FROM #BFtotal AS BFT
-	WHERE Country != 'GBR' AND BFA_ID IS NULL
+	WHERE Country NOT IN ('GBR', 'SCO', 'WAL', 'NIR', 'ENG') AND BFA_ID IS NULL
 	AND dbo.TempComp.Rank = BFT.Rank)
 	AND (SELECT BF_runtot FROM #BFtotal AS BFT
-	WHERE Country != 'GBR' AND BFA_ID IS NULL
+	WHERE Country NOT IN ('GBR', 'SCO', 'WAL', 'NIR', 'ENG') AND BFA_ID IS NULL
 	AND dbo.TempComp.Rank = BFT.Rank
 	AND dbo.TempComp.LastName = BFT.LastName
 	AND dbo.TempComp.FencerID <= @FenNum) >= 16
@@ -186,10 +186,10 @@ CASE
 	
 	/* 15 >= runtot >= 6 */
 	WHEN (SELECT BF_runtot FROM #BFtotal AS BFT
-	WHERE Country != 'GBR' AND BFA_ID IS NULL
+	WHERE Country NOT IN ('GBR', 'SCO', 'WAL', 'NIR', 'ENG') AND BFA_ID IS NULL
 	AND dbo.TempComp.Rank = BFT.Rank) <= 15
 	AND (SELECT BF_runtot FROM #BFtotal AS BFT
-	WHERE Country != 'GBR' AND BFA_ID IS NULL
+	WHERE Country NOT IN ('GBR', 'SCO', 'WAL', 'NIR', 'ENG') AND BFA_ID IS NULL
 	AND dbo.TempComp.Rank = BFT.Rank
 	AND dbo.TempComp.LastName = BFT.LastName
 	AND dbo.TempComp.FencerID <= @FenNum) >= 6
@@ -197,7 +197,7 @@ CASE
 
 	/* 5 >= runtot */
 	WHEN (SELECT BF_runtot FROM #BFtotal AS BFT
-	WHERE Country != 'GBR' AND BFA_ID IS NULL
+	WHERE Country NOT IN ('GBR', 'SCO', 'WAL', 'NIR', 'ENG')AND BFA_ID IS NULL
 	AND dbo.TempComp.Rank = BFT.Rank
 	AND dbo.TempComp.LastName = BFT.LastName
 	AND dbo.TempComp.FencerID <= @FenNum) <= 5
@@ -207,7 +207,7 @@ CASE
 	ELSE BF_points
 	END
 	)
-WHERE Country != 'GBR' AND BFA_ID IS NULL;
+WHERE Country NOT IN ('GBR', 'SCO', 'WAL', 'NIR', 'ENG') AND BFA_ID IS NULL;
 
 /* This section shows what fencers have had their NIF (BF_points)
 modified due to not have a ranking, and by being international fencers,
@@ -216,7 +216,7 @@ SELECT TC.FencerID, TC.Rank, TC.LastName, TC.FirstName,
 TC.Country, TC.Club, TC.BF_Points, BFT.BF_runtot FROM dbo.TempComp AS TC
 LEFT JOIN #BFtotal AS BFT
 ON TC.Rank = BFT.Rank
-WHERE TC.Country != 'GBR' AND TC.BFA_ID IS NULL
+WHERE TC.Country NOT IN ('GBR', 'SCO', 'WAL', 'NIR', 'ENG') AND TC.BFA_ID IS NULL
 AND TC.LastName = BFT.LastName;
 
 --SELECT SUM(BF_points) FROM dbo.TempComp;

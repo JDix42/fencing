@@ -1,7 +1,7 @@
-DECLARE @LongName nvarchar(255) = 'Shropshire Open 2016';
-DECLARE @ShortName nvarchar(8) = 'ShrpOpen';
-DECLARE @Date datetime = '2016-09-03 09:00:00.000';
-DECLARE @TotalNumFencers Int = '30';
+DECLARE @LongName nvarchar(255) = 'Derry Open 2017';
+DECLARE @ShortName nvarchar(8) = 'DrryOpen';
+DECLARE @Date datetime = '2017-11-18 08:45:00.000';
+DECLARE @TotalNumFencers Int = '14';
 DECLARE @DomOrInt nvarchar(1) = 'D'
 
 INSERT INTO dbo.Comp (

@@ -25,6 +25,13 @@ SET Surname = 'Kuznetsov'
 WHERE FirstName = 'Nikita'
 AND UPPER(Surname) = 'KUZNETSKOV';
 
+UPDATE fencing_project.dbo.BFA_ID
+SET Surname = 'Lee',
+	FirstName = 'Man',
+	MidName = 'Kit'
+WHERE Surname = 'Lee, Man Kit';
+
+
 SELECT * FROM fencing_project.dbo.BFA_ID;
 
 SELECT * FROM fencing_project.dbo.BFA_ID
