@@ -1,0 +1,663 @@
+1	MASSIALAS Alexander	USA	(2.0)	32.0		12.0			14.0	(4.0)		21.0				(4.0)	48.0		48.0	78.0	253.0
+2	GAROZZO Daniele	ITA	(4.0)	14.0		12.0			14.0	20.0		(3.0)				(2.0)	21.0	12.0		96.0	189.0
+3	KRUSE Richard	GBR	8.0	(1.0)		39.0			8.0	8.0		48.0				(2.0)	(6.0)	12.0		54.0	177.0
+4	SAFIN Timur	RUS	32.0	(2.0)		6.0			(2.0)	(2.0)		6.0				8.0	12.0	48.0		60.0	172.0
+5	AVOLA Giorgio	ITA	14.0	(4.0)		21.0			14.0	(2.0)		21.0				8.0	(3.0)	30.0		42.0	150.0
+6	DAVIS James-Andrew	GBR	26.0	(2.0)		21.0			(4.0)	32.0		(12.0)				20.0	21.0	3.0		24.0	147.0
+7	MA Jianfei	CHN	14.0	14.0		48.0		(1.0)	14.0	(2.0)		12.0	21.0			(2.0)	(12.0)			24.0	147.0
+8	MEINHARDT Gerek	USA	(8.0)	20.0		(3.0)			20.0	14.0		12.0				14.0	(6.0)		12.0	42.0	134.0
+9	ABOUELKASSEM Alaaeldin	EGY	4.0	(1.0)		(3.0)			4.0	(2.0)		39.0		48.0		8.0	6.0			24.0	133.0
+10	CHEN Haiwei	CHN	4.0	(1.0)		6.0		(0.0)	(0.0)	14.0		12.0	21.0			(2.0)	30.0			42.0	129.0
+11	LE PECHOUX Erwann	FRA	(2.0)	(4.0)		6.0			(2.0)	20.0		6.0				14.0	12.0	39.0		24.0	121.0
+12	IMBODEN Race	USA	(4.0)	8.0		6.0			32.0	(2.0)		30.0				(2.0)	6.0		30.0		112.0
+13	JOPPICH Peter	GER	8.0	(1.0)		12.0		(4.0)	26.0	(4.0)		(3.0)				8.0	12.0	12.0		24.0	102.0
+14	LEE Kwanghyun	KOR	8.0	8.0		30.0			(2.0)			3.0	12.0			(1.0)	39.0				100.0
+15	CHAMLEY-WATSON Miles	USA	(2.0)	8.0		(6.0)			8.0	26.0		6.0				(2.0)	6.0		30.0	12.0	96.0
+16	CHEUNG Ka Long	HKG	2.0	(1.0)		(0.0)			4.0	4.0		6.0	48.0			4.0	(1.5)			24.0	92.0
+17	HEO Jun	KOR	(4.0)	26.0		21.0			(4.0)	(2.0)		6.0	12.0			8.0	6.0			12.0	91.0
+18	CASSARA Andrea	ITA		14.0					4.0	4.0		21.0				(2.0)	3.0	21.0		24.0	91.0
+19	OTA Yuki	JPN	20.0	20.0		6.0			4.0	(2.0)			21.0			(2.0)	6.0			12.0	89.0
+20	CADOT Jeremy	FRA	20.0	4.0		12.0			(2.0)	(2.0)		(3.0)				14.0	12.0	12.0		12.0	86.0
+21	RIGIN Dmitry	RUS	(4.0)	(2.0)		12.0			20.0	(2.0)		6.0				26.0	6.0	6.0			76.0
+22	LEFORT Enzo	FRA	(2.0)	(1.0)		3.0			(0.0)	8.0		21.0				4.0	6.0	21.0		12.0	75.0
+23	TONY HELISSEY Jean-Paul	FRA	(0.0)	(1.0)		12.0			2.0	(0.0)		30.0				4.0	12.0	12.0			72.0
+24	CHEREMISINOV Alexey	RUS	14.0	(2.0)		3.0			4.0	(2.0)		6.0				(2.0)	21.0	6.0		12.0	66.0
+25	TOLDO Guilherme	BRA	2.0	(0.0)		3.0			(0.0)	(0.0)		3.0				2.0	1.5		12.0	42.0	65.5
+26	LEI Sheng	CHN	2.0	4.0					(1.0)	(1.0)		12.0	30.0			2.0	3.0			12.0	65.0
+27	HALSTED Laurence	GBR	2.0	2.0		(1.5)			(1.0)	(2.0)		3.0			(1.0)	4.0	21.0	21.0		12.0	65.0
+28	NISTA Lorenzo	ITA	(2.0)	(2.0)		30.0			(4.0)	14.0		6.0				8.0	6.0				64.0
+29	AKHMATKHUZIN Artur	RUS	(2.0)	8.0		3.0			(2.0)	8.0		(1.5)				8.0	6.0	6.0		24.0	63.0
+30	AYAD Tarek	EGY	(0.0)	(0.0)		12.0			2.0	2.0		3.0		30.0		(1.0)	1.5			12.0	62.5
+31	FOCONI Alessio	ITA	8.0	4.0		(3.0)			(2.0)	8.0		12.0				(2.0)	30.0				62.0
+32	GOMEZ Daniel	MEX						2.0	(0.0)	(1.0)	1.0	1.5				4.0	1.5		39.0	12.0	61.0
+33	BALDINI Andrea	ITA	8.0	14.0		(1.5)			(0.0)	(4.0)		6.0				20.0	6.0	6.0			60.0
+34	SINTES Hamid	ALG										1.5		39.0		1.0	0.0			12.0	53.5
+35	CHOUPENITCH Alexander	CZE	4.0	(2.0)		(3.0)		3.0	4.0	(0.0)		6.0				(2.0)	12.0	12.0		12.0	53.0
+36	ZHEREBCHENKO Dmitry	RUS	4.0	(2.0)		6.0			(0.0)	4.0		(1.5)				32.0	6.0				52.0
+37	SHIKINE Takahiro	JPN	4.0	2.0					(1.0)	2.0			39.0			1.0	3.0				51.0
+38	SANITA Andre	GER	(0.0)	(1.0)		3.0		(0.0)	8.0	2.0						2.0	3.0	30.0			48.0
+39	MEPSTEAD Marcus	GBR	(2.0)	(0.0)		12.0			(4.0)	8.0		12.0				4.0	6.0	3.0			45.0
+40	PERRIER Ghislain	BRA	2.0	(0.0)		3.0			(0.0)	2.0		3.0				(1.0)	1.5		21.0	12.0	44.5
+41	VAN HAASTER Maximilien	CAN	1.0	1.0		(0.0)		(0.0)	(1.0)	4.0	2.0	(0.0)				(1.0)	3.0		21.0	12.0	44.0
+42	SAMANDI Mohamed	TUN	0.0			3.0			8.0	1.0		1.5		30.0							43.5
+43	FERJANI Mohamed Ayoub	TUN	(0.0)	(0.0)		1.5			(1.0)	2.0		3.0		21.0		2.0	1.5			12.0	43.0
+44	PAROLI Alessandro	ITA	8.0	(0.0)		6.0			(2.0)	8.0		(1.5)				4.0	12.0				38.0
+45	KWON Youngho	KOR	0.0	0.0		3.0			2.0	(0.0)			30.0			2.0					37.0
+46	ESSAM Mohamed	EGY	(1.0)	4.0		3.0			(0.0)	(0.0)		1.5		12.0		1.0	3.0			12.0	36.5
+47	LUPERI Edoardo	ITA	4.0	4.0		6.0			8.0	14.0		(3.0)				(4.0)	(3.0)				36.0
+48	MATSUYAMA Kyosuke	JPN	4.0	4.0		1.5			(0.0)	2.0			21.0			(1.0)	3.0				35.5
+49	PAUTY Maxime	FRA	(2.0)	8.0		6.0			8.0	(1.0)		6.0				(2.0)	6.0				34.0
+50	SON Young Ki	KOR	8.0	2.0		6.0			(1.0)	2.0		3.0	12.0			(1.0)					33.0
+51	LARI Tommaso	ITA	2.0			21.0			(2.0)	2.0		3.0				(2.0)	3.0				31.0
+52	YUNES Klod	UKR	2.0	2.0		(0.0)			(1.0)	2.0		1.5				2.0		21.0			30.5
+53	PRANZ Rene	AUT	(0.0)	4.0		(3.0)	4.0		(2.0)	4.0	(1.0)	3.0			(2.0)	(0.0)	3.0	6.0		6.0	30.0
+54	KHOVANSKIY Alexey	RUS	(2.0)	4.0		6.0			8.0	4.0		(3.0)				8.0	(1.5)				30.0
+55	MARQUES Henrique	BRA	0.0	2.0		3.0			(0.0)	0.0	(0.0)					(0.0)	3.0		12.0	6.0	26.0
+56	HAMZA Mohamed	EGY	1.0	0.0					0.0			3.0		21.0		(0.0)	0.0				25.0
+57	KOMISSAROV Dmitry	RUS	(2.0)	8.0		6.0			4.0	4.0		(3.0)				(2.0)	3.0				25.0
+58	MINUTO Martino	TUR	(0.0)	(1.0)	4.0	1.5	2.0	(0.0)	2.0	(1.0)	(0.0)	(1.5)			(0.0)	(1.0)	3.0	12.0			24.5
+59	HERTSYK Rostyslav	UKR	2.0	0.0		3.0			(0.0)	(0.0)		12.0				4.0		3.0			24.0
+60	MERTINE Julien	FRA	4.0	(2.0)		6.0			(2.0)	4.0		6.0				4.0	(1.5)				24.0
+61	SAUCEDO Felipe Guillermo	ARG	0.0			0.0		(0.0)	0.0	2.0		0.0							21.0		23.0
+62	ROSATELLI Damiano	ITA	2.0	8.0		(1.5)			4.0	(0.0)		6.0				(1.0)	3.0				23.0
+63	HEROUI Salim	ALG							0.0			0.0		21.0							21.0
+64	TIRADO Sebastian A.	PUR									0.0								21.0		21.0
+65	SIMONCELLI Luca	ITA	(1.0)	2.0		1.5			2.0	(0.0)						14.0	1.5				21.0
+66	MABED Yanis Baptiste	ALG												21.0							21.0
+67	POGREBNIAK Andrii	UKR	0.0	2.0		3.0			2.0							2.0		12.0			21.0
+68	LLAVADOR Carlos	ESP	2.0	4.0		1.5		(0.0)	(1.0)	(1.0)		6.0					1.5	6.0			21.0
+69	FUJINO Daiki	JPN	(0.0)	(1.0)		6.0			2.0	(1.0)		3.0	6.0			2.0	1.5				20.5
+70	HATOEL Maor	ISR	(1.0)	1.0		1.5			(0.0)	2.0	3.0	6.0						6.0			19.5
+71	LEAL Antonio J.	VEN		0.0		0.0				(0.0)	0.0	1.5					0.0		12.0	6.0	19.5
+72	CHOI Nicholas Edward	HKG	1.0	4.0		1.5			0.0	1.0			12.0								19.5
+73	POSCHARNIG Johannes	AUT	(1.0)	1.0		3.0	(0.0)		(0.0)	4.0	(0.0)	1.5				(0.0)	3.0	6.0			18.5
+74	SHI Jialuo	CHN	2.0	2.0		1.5		(0.0)	(0.0)	(0.0)		3.0	6.0			4.0	(0.0)				18.5
+75	JANDA Piotr	POL	1.0	4.0		(0.0)			1.0	(0.0)		1.5				4.0		6.0			17.5
+76	CHEUNG Siu Lun	HKG	0.0	2.0					1.0	2.0			12.0				0.0				17.0
+77	MOURRAIN Baptiste	FRA	(0.0)	2.0		(0.0)			(1.0)	8.0		1.5				2.0	3.0				16.5
+78	LI Chen	CHN	0.0	2.0		6.0		(0.0)	(0.0)	(0.0)		6.0					1.5				15.5
+79	CHIDA Kenta	JPN	4.0	4.0		1.5			2.0	4.0											15.5
+80	DOSA Daniel	HUN	2.0			(0.0)		(0.0)	2.0	1.0		3.0				1.0	(0.0)	6.0			15.0
+81	DJITLI Roman	ALG	14.0																		14.0
+82	YEUNG Chi Ka	HKG	1.0	0.0					0.0	1.0			12.0								14.0
+83	SIMON Vincent	FRA	4.0	2.0		3.0			2.0	(0.0)		(1.5)					3.0				14.0
+84	SILVA Ruben	CHI									0.0	1.5							12.0		13.5
+85	AGUIRRE Cesar	VEN		0.0		0.0			(0.0)	0.0	0.0	1.5							12.0		13.5
+86	BRODEUR Marc-Antoine	CAN	1.0	0.0		0.0		0.0	0.0	(0.0)									12.0		13.0
+87	DOUGLAS Sholto	AUS		0.0		0.0			0.0	1.0			12.0								13.0
+88	KAHL Alexander	GER	1.0			3.0			1.0	1.0						4.0		3.0			13.0
+89	TOFALIDES Alex	CYP	(1.0)	2.0		1.5		(0.0)	2.0	4.0		3.0									12.5
+90	HA Taegyu	KOR		4.0					2.0	2.0		1.5					3.0				12.5
+91	MADI Youcef	ALG							0.0			0.0		12.0							12.0
+92	MIAWOTOE Komlan Efanam	TOG				0.0								12.0							12.0
+93	TROFIMOV Dmitry	RUS	1.0	2.0					8.0	0.0						1.0					12.0
+94	BESSAOUD Heythem	TUN												12.0							12.0
+95	BARNES-WEBB Richard	RSA												12.0							12.0
+96	SEFULARO Keith Manyaneyane	RSA												12.0							12.0
+97	PADUA Carlos M.	PUR									0.0								12.0		12.0
+98	NGUYEN Minh Quang	VIE											12.0				0.0				12.0
+99	ALI Lahoussine	MAR							0.0					12.0							12.0
+100	HOWITT Andrew	RSA												12.0							12.0
+101	ASPROMONTE Valerio	ITA	2.0	2.0		3.0			(0.0)	(0.0)						2.0	3.0				12.0
+102	CHOI Byungchul	KOR	0.0	8.0		3.0															11.0
+103	CHASTANET Maximilien	FRA	0.0						4.0	4.0							3.0				11.0
+104	ARIZAGA Raul	MEX				(0.0)	1.0	0.0	(0.0)	(0.0)	1.0	1.5				1.0	(0.0)		6.0		10.5
+105	NEMETH Andras	HUN	1.0	2.0		1.5		0.0	0.0									6.0			10.5
+106	BACHMANN Sebastian	GER	1.0	2.0		1.5		(0.0)	4.0	2.0											10.5
+107	SIESS Michal	POL	1.0	0.0		1.5			(0.0)	2.0		3.0				(0.0)		3.0			10.5
+108	OR Tomer	ISR	0.0				3.0		(0.0)	0.0	4.0	3.0									10.0
+109	TSORONIS Alexander	DEN	0.0	2.0		(0.0)		0.0	(0.0)	1.0					4.0			3.0			10.0
+110	KUNDERA Vaclav	CZE				3.0		0.0	0.0	1.0						0.0		6.0			10.0
+111	RAJSKI Leszek	POL	2.0	1.0		1.5			(0.0)	(0.0)		1.5				1.0		3.0			10.0
+112	ARSLANOV Timur	RUS	2.0	(0.0)		3.0			2.0	1.0						2.0					10.0
+113	PITTA Guillaume	FRA	2.0	1.0		3.0			(0.0)			3.0				1.0					10.0
+114	SIDO Alexandre	FRA							0.0	8.0							1.5				9.5
+115	OISHI Riki	JPN	(0.0)	1.0		1.5			1.0	(1.0)		3.0					3.0				9.5
+116	MOHAMMAD Yaser	FIE	0.0		0.0	(0.0)	2.0		(0.0)	1.0	0.0		6.0								9.0
+117	CHAN Kevin Jerrold	SGP		0.0				0.0		0.0		3.0	6.0								9.0
+118	SAITO Toshiya	JPN	1.0	(0.0)					1.0	2.0						2.0	3.0				9.0
+119	PLOCHARSKI Filip	POL	4.0	1.0		1.5			1.0	(0.0)		(0.0)				1.0					8.5
+120	WU Xiaolong	CHN										3.0				4.0	1.5				8.5
+121	JANDA Michal	POL	0.0	1.0		1.5			1.0	(0.0)		1.5				(0.0)		3.0			8.0
+122	KLEIBRINK Benjamin	GER						1.0	0.0	1.0						4.0	1.5				7.5
+123	KREJCIK Jan	CZE				1.5		0.0	1.0	2.0						0.0		3.0			7.5
+124	CUSACK Brendan Francis	IRL	0.0	0.0		0.0		(0.0)	0.0	(0.0)	(0.0)	1.5						6.0			7.5
+125	ALVEAR Felipe	CHI									0.0	1.5							6.0		7.5
+126	KWAK Junhyuk	KOR	1.0	2.0		3.0			0.0								1.5				7.5
+127	BABAOGLU Tevfik Burak	TUR	(0.0)	0.0	3.0	(0.0)	(0.0)	(0.0)	1.0	(0.0)	(0.0)	1.5					1.5	0.0			7.0
+128	KROEPLIN Moritz	GER	0.0	4.0		0.0		2.0	1.0	(0.0)											7.0
+129	PEGGS Ben	GBR	1.0	1.0		(0.0)		1.0	1.0	(0.0)		3.0				(1.0)	(0.0)				7.0
+130	BYK Siarhei	BLR	0.0						0.0	0.0						1.0		6.0			7.0
+131	FITZGERALD Edward	AUS				0.0			1.0	0.0			6.0								7.0
+132	WEBBER Lucas	AUS							1.0	0.0			6.0								7.0
+133	SUZUMURA Kenta	JPN		1.0													6.0				7.0
+134	BRAUN Marius	GER	(0.0)	1.0		(0.0)		(0.0)	2.0	1.0						1.0	1.5	0.0			6.5
+135	KIM Hyogon	KOR	4.0	0.0		1.5				1.0											6.5
+136	KANESHIGE Brian	USA	0.0	2.0		1.5			2.0	1.0		(0.0)									6.5
+137	LOUIE Brennan Wayne	PHI	0.0	0.0				0.0	0.0		0.0		6.0				(0.0)				6.0
+138	ALHASSAN SAMBA Abubakari	GHA												6.0							6.0
+139	VARAS Erik Gabriel	ARG									0.0								6.0		6.0
+140	GRIGORYEV Eduard	KAZ											6.0								6.0
+140	AFFORTU Husseni	GHA												6.0							6.0
+142	LUCCHETTI Santiago	ARG									0.0	0.0							6.0		6.0
+143	NG Jet Shang Fei	SGP						0.0					6.0								6.0
+144	PARRA COLLAZOS Fabian Andres	COL																	6.0		6.0
+145	PELLETIER Jose Alberto	MEX									0.0								6.0		6.0
+146	SWEET Mikhail	CAN									0.0								6.0		6.0
+147	CHANG Jerry	USA	2.0	0.0		0.0			4.0												6.0
+148	LAHUNOU Uladzislau	BLR							0.0	0.0						0.0		6.0			6.0
+149	LEON Victor	VEN	0.0	0.0	0.0	0.0											0.0		6.0		6.0
+150	PEREZ Nathaniel	PHI											6.0								6.0
+151	BELTRAN Jesus	MEX								0.0	0.0	0.0				0.0	0.0		6.0		6.0
+152	LUGO Jonathan	PUR									0.0								6.0		6.0
+153	ADHAMI Alireza	IRI								0.0			6.0								6.0
+154	SERVELLO Augusto Antonio	ARG						0.0			0.0								6.0		6.0
+155	OU Feng Ming	TPE		0.0		0.0		0.0	0.0				6.0				0.0				6.0
+156	SERRANO BERRIOS Gustavo	PUR																	6.0		6.0
+157	CHEN Xing Jian	SGP		0.0				0.0					6.0				0.0				6.0
+158	GAGANIDZE Luka	GEO																6.0			6.0
+159	LOPEZ GONZALEZ Jose	GUA									0.0	0.0							6.0		6.0
+160	PHAM Quoc Tai	VIE											6.0				0.0				6.0
+161	MEYBERG Juan Felipe	COL																	6.0		6.0
+162	PACHON Santiago	COL									0.0	0.0							6.0		6.0
+163	SEDOV Artem	RUS	0.0						4.0	0.0						2.0					6.0
+164	SADULLAEV Doniyor	UZB											6.0								6.0
+165	HERNANDEZ VASQUEZ Alejandro	COL																	6.0		6.0
+165	TOLOUEI Shervin	IRI											6.0								6.0
+167	CHEN Min	CHN	0.0					0.0	1.0							2.0	3.0				6.0
+168	MARCILLOUX Marcel	FRA				3.0						3.0				0.0					6.0
+169	PIVOVAROV Alexander	RUS	2.0	1.0		0.0			2.0	1.0											6.0
+170	WILLETTE David	USA	2.0	(0.0)		1.5			1.0	0.0		1.5									6.0
+171	KLEIN Felix	GER	1.0	1.0		(0.0)			2.0	1.0						1.0	(0.0)				6.0
+172	NAGLE Christopher	AUS				(0.0)	1.0		0.0	(0.0)	(0.0)	1.5			2.0	1.0	(0.0)				5.5
+173	BIONDO Tobia	ITA	1.0			1.5						3.0									5.5
+174	PERELMANN Mark	GER	1.0	(0.0)		1.5			2.0	1.0						0.0					5.5
+175	SCAVASIN Fernando	BRA	0.0	0.0	1.0	0.0		(0.0)	(0.0)	(0.0)		(0.0)				1.0			3.0		5.0
+176	AWAJI Suguru	JPN	1.0	2.0		0.0			0.0	2.0											5.0
+177	RZADKOWSKI Andrzej	POL							2.0								3.0				5.0
+178	REICHETZER Tobias	AUT	0.0	0.0		0.0			(0.0)	(0.0)		1.5				(0.0)	3.0				4.5
+179	ESCURAT Aymeric	FRA		0.0					2.0	1.0		1.5									4.5
+180	MIYAKE Ryo	JPN	1.0	0.0		1.5			0.0	2.0											4.5
+181	TRANI Francesco	ITA				0.0		1.0				3.0									4.0
+182	DARABAN Radu	ROU			0.0	3.0			1.0	0.0											4.0
+183	BORST Sebastiaan	NED	0.0	0.0		(0.0)		0.0		1.0					0.0			3.0			4.0
+184	KIM Minkyu	KOR								4.0							0.0				4.0
+185	ABE Yoshiki	JPN		0.0								3.0				1.0	0.0				4.0
+186	INGARGIOLA Francesco	ITA		1.0		3.0															4.0
+187	SHIMBO Heitor	BRA	0.0	(0.0)	0.0	(0.0)	1.0	(0.0)	(0.0)	(0.0)	1.0	1.5				(0.0)					3.5
+188	AUCLIN Erwann	FRA	2.0	0.0		(0.0)			0.0	0.0		1.5									3.5
+189	SCHLOSSER Roland	AUT													3.0						3.0
+190	RIZELL Simon	SWE	0.0					0.0	0.0									3.0			3.0
+191	CHUCHUKALO Dmytro	UKR				0.0	0.0		0.0	1.0						2.0					3.0
+192	MACEDO Pedro	POR		0.0	0.0	0.0	0.0	0.0	(0.0)	(0.0)		(0.0)						3.0			3.0
+193	KOMSIC Ivan	CRO		1.0	0.0	0.0		0.0	2.0	(0.0)						(0.0)					3.0
+194	GARCIA Eduardo	PER									0.0								3.0		3.0
+195	ANDERSEN Emil Ulrik	DEN				0.0		0.0	0.0	0.0					0.0			3.0			3.0
+196	CHAN Hamish	NZL											3.0								3.0
+197	LOPEZ Luis	GUA										0.0							3.0		3.0
+198	BELL Chris	NZL											3.0								3.0
+199	GUNARTO Ricky Hafidz Jan	INA											3.0								3.0
+200	FUNES URRUTIA Daniel Isaac	ESA																	3.0		3.0
+200	MAYAKAN Sopanut	THA											3.0								3.0
+202	PRASSETYO Muhammad Fatah	INA											3.0								3.0
+203	CHALIANKOV Aliaksandr	BLR							0.0							0.0		3.0			3.0
+204	AL MANSOORI Majed	UAE											3.0								3.0
+205	CURIOSO Wilfred	PHI		0.0									3.0								3.0
+206	SOLEIMANI VARKANEH Alireza	IRI											3.0								3.0
+206	BIANCHI Guillaume	ITA				3.0															3.0
+208	LECOCQ Hans Joachim	BEL				0.0			0.0	0.0								3.0			3.0
+209	BOYCHAEV Sirojjon	UZB											3.0								3.0
+210	NGUYEN Quoc Oai	VIE											3.0				0.0				3.0
+211	TSEVAN Artur	BLR																3.0			3.0
+212	FOSTER Matt	AUS							0.0	0.0			3.0								3.0
+213	EBRAHIMI Abdullah	QAT											3.0								3.0
+214	ANUAR Mohd Aqil	MAS											3.0								3.0
+215	LEONG Cheng Wai	MAC											3.0								3.0
+216	GANEEV Renal	RUS				3.0															3.0
+216	KHALMURATOV Janibek	UZB											3.0								3.0
+218	THOKCHOM Bicky	IND											3.0								3.0
+219	KURFURST Jan	CZE								0.0						0.0		3.0			3.0
+220	HOI Man Kit	MAC											3.0								3.0
+221	VAN EGMOND Dirk Jan	NED						0.0	0.0	0.0								3.0			3.0
+222	SETIA Andi Oky	INA											3.0								3.0
+223	HUANG Mengkai	CHN															3.0				3.0
+224	BORONTOV Pavel	RUS	0.0	1.0						2.0											3.0
+225	KIEFER Axel	USA															3.0				3.0
+226	CEGIELSKI Bartosz	POL				3.0			0.0	0.0											3.0
+227	MURAKAMI Satoki	JPN		0.0								3.0				0.0	0.0				3.0
+228	MA Daijun	CHN															3.0				3.0
+229	LUO Dongcheng	CHN															3.0				3.0
+230	LEE Hanseok	KOR															3.0				3.0
+231	YANG Hyeonjun	KOR															3.0				3.0
+232	NOGUCHI Ryohei	JPN		0.0								1.5				0.0	1.5				3.0
+233	CHAN Kyle	HKG	0.0	0.0						0.0						1.0	1.5				2.5
+234	ITO Takuma	JPN		1.0													1.5				2.5
+235	MENKUER Engin Batuhan	TUR			2.0		0.0														2.0
+236	CASTIGLIONI Alberto	ITA			2.0			0.0													2.0
+237	ALARCON Juvenal	CHI									2.0	0.0									2.0
+238	SCHENKEL Eli	CAN	0.0	2.0					0.0	0.0	0.0	(0.0)									2.0
+239	UNDA Juan Sebastian	MEX						0.0	2.0		0.0										2.0
+240	SCRUGGS Nolen	USA	2.0																		2.0
+241	MATYAS Balint	HUN				0.0			0.0	2.0		0.0						0.0			2.0
+242	BRAVO Nobuo	USA	2.0																		2.0
+243	VEITENHEIMER Ciaran	GER		2.0					0.0	0.0						0.0					2.0
+244	SEMENYUK Grigoriy	RUS														2.0					2.0
+245	KHAMZIN Askar	RUS														2.0					2.0
+246	ITO Makoto	JPN		2.0																	2.0
+247	BAKIROV Marat	RUS														2.0					2.0
+248	MOINE Jordan	FRA	0.0	1.0		0.0			0.0							1.0					2.0
+249	LALONDE TURBIDE Etienne	CAN	0.0	1.0					0.0	1.0											2.0
+250	DOERR Georg	GER	0.0	0.0		0.0			1.0	(0.0)						1.0					2.0
+251	JOURNET Benoit	FRA							1.0							1.0					2.0
+252	SAKANO Hirokazu	JPN	0.0	1.0		0.0			1.0	0.0											2.0
+253	WOHLGEMUTH Dominik	AUT	0.0		0.0	1.5		0.0	0.0	(0.0)		(0.0)			(0.0)		(0.0)				1.5
+254	GUERRA Filippo	ITA				1.5		0.0													1.5
+255	MEJIA RUIZ Gabriel	COL	0.0								0.0	1.5									1.5
+256	ELICE Meddy	FRA						0.0	0.0								1.5				1.5
+257	LANGER Mario	AUT	0.0	0.0		1.5			0.0	0.0						(0.0)					1.5
+258	CHEN Yu	CHN															1.5				1.5
+259	JOHNSTON Drew	USA															1.5				1.5
+260	SCHOPPA Dominik	GER				0.0				0.0						0.0	1.5				1.5
+261	SURWILLO Jakub	POL	0.0	0.0		(0.0)			0.0	0.0							1.5				1.5
+262	NAGANO Yudai	JPN	0.0	0.0													1.5				1.5
+263	AGUILERA LUIS Humberto	CUB										1.5									1.5
+264	PODSHYVALOV Andriy	UKR				1.5															1.5
+265	NEMETH Gabor	HUN				1.5															1.5
+265	SUN Bin	CHN															1.5				1.5
+265	WU Bin	CHN															1.5				1.5
+268	CHEN Weiquan	CHN															1.5				1.5
+269	EDIRI Alexandre	FRA							0.0								1.5				1.5
+270	LI Hua	CHN															1.5				1.5
+271	BRICENO Janderson	VEN			1.0	0.0			0.0	0.0		(0.0)			0.0	(0.0)					1.0
+272	BERTOLAZZI Alessandro	ITA													1.0						1.0
+272	COSGUN Muhemmed Ege	TUR			1.0																1.0
+274	GUNES Fatih	TUR	0.0		0.0		1.0														1.0
+275	YUVACAN Tayga	TUR			1.0		0.0			0.0											1.0
+276	RIZELL Josef	SWE		0.0				0.0		0.0					1.0			0.0			1.0
+277	NAGLE Conor	IRL						0.0		0.0					1.0			0.0			1.0
+278	DAHLIN Kolja	DEN						0.0	1.0	0.0					0.0						1.0
+279	HEDENSKOG Filip	SWE				0.0		0.0	0.0	1.0					0.0			0.0			1.0
+280	ROGER Enguerand	FRA						0.0	1.0												1.0
+281	FILES Petar	CRO						0.0	1.0	0.0											1.0
+282	FUNAMOTO Seishiro	JPN		1.0																	1.0
+282	KHAMZIN Ernst	RUS														1.0					1.0
+284	UFTRING Niklas	GER				0.0			0.0							1.0					1.0
+285	BRANMAN Matthew	USA	1.0																		1.0
+286	ITKIN Nick	USA	1.0																		1.0
+287	KNODT Julian	USA	1.0	0.0								0.0									1.0
+288	ZAKHARIKOV Anton	RUS														1.0					1.0
+289	ULANOWSKI Mateusz	POL							0.0	1.0						0.0					1.0
+290	MOELIS Samuel	USA	1.0																		1.0
+291	MOON Myeong Jun	KOR	1.0	0.0																	1.0
+292	UPBIN William	USA	1.0																		1.0
+293	TOURETTE Geoffrey	USA	1.0																		1.0
+294	DELBERGUE Guillermo	ESP				0.0				1.0											1.0
+295	NEBASHI Takumi	JPN		1.0																	1.0
+296	XAVIER Marco	BRA	0.0			0.0			1.0	0.0		0.0				(0.0)					1.0
+297	MITBERG Gregory	USA	1.0							0.0											1.0
+298	KLEIN Luis	GER								1.0											1.0
+299	SZUMIELEWICZ Pawel	POL				0.0			0.0	0.0						1.0					1.0
+300	BERG Thomas Lerche	DEN							0.0	0.0					0.0						0.0
+301	BIREN Bora Ismail	TUR					0.0		0.0	0.0											0.0
+302	BANEUX Julien	BRA	0.0								0.0										0.0
+303	JORGENSEN Philippe	DEN													0.0						0.0
+304	PETTINATO Mateo	ARG						0.0	0.0	0.0	0.0										0.0
+305	DOBIASCH Martin	AUT				0.0	0.0		0.0	0.0											0.0
+306	BROCCA Giovanni	ITA			0.0																0.0
+306	VOILET Sylvain	FRA													0.0						0.0
+308	DE RUITER Job	NED						0.0		0.0								0.0			0.0
+309	DANCKWARDT Mathias	DEN						0.0							0.0						0.0
+310	GULER Baris	TUR	0.0		0.0	0.0	0.0		0.0	(0.0)								0.0			0.0
+311	ALEXANDER David	IRL				0.0		0.0	0.0	0.0		0.0			(0.0)			0.0			0.0
+312	AKYALCIN Gokhan	TUR			0.0		0.0														0.0
+313	RAMADHAN Tauhid	INA			0.0																0.0
+314	FILIPPI Davide	ITA						0.0													0.0
+315	AKGUMUS Faruk Ziya	TUR			0.0		0.0														0.0
+316	LIM Alex	CAN				0.0		0.0	0.0	0.0					0.0						0.0
+317	STEPURA Yaroslav	UKR					0.0		0.0	0.0											0.0
+318	CALISKAN Kaan	TUR					0.0														0.0
+319	OZGURKAN Hadi	TUR			0.0		0.0														0.0
+320	YESIL Tolga	TUR			0.0		0.0														0.0
+321	SANGOWAWA Babatunde Olufemi	NGR												0.0							0.0
+321	BELLO Sulaimon	NGR												0.0							0.0
+323	SADIQ Hussain	GBR			0.0		0.0								0.0						0.0
+324	ZENGIN Emre	TUR			0.0		0.0														0.0
+325	MOHLI Nino	FRA													0.0						0.0
+326	OSTACCHINI Glen	GBR						0.0							0.0						0.0
+327	MANNAN Zohaib	USA									0.0										0.0
+328	PFANN Florens	GER						0.0							0.0						0.0
+329	CORLETT Thomas	GBR						0.0							0.0						0.0
+330	ARIADINATA SATRIANA Dennis	INA			0.0																0.0
+330	BEKBULAT Gorkem	TUR					0.0														0.0
+332	BILLING Matthew	GBR					0.0	0.0							0.0						0.0
+333	ALARCON Gustavo	CHI									0.0										0.0
+333	YILMAZ Salih Cansin	TUR			0.0																0.0
+335	STANDEN David	GBR					0.0	0.0													0.0
+336	ROGER Wallerand	FRA						0.0	0.0												0.0
+337	FERNANDEZ Yerbinson	VEN													0.0						0.0
+338	KARADOGAN Ferhat Alp	TUR			0.0		0.0														0.0
+339	KAJBJER Petter	SWE						0.0							0.0						0.0
+340	ONG Justin Xian Shi	SGP					0.0										0.0				0.0
+341	ARCHER Kristjan	GBR	0.0					0.0													0.0
+342	TELLIOGLU Erhan Temel	TUR					0.0														0.0
+342	MUTIS Bora	TUR			0.0																0.0
+342	SANCHEZ Derwin	VEN													0.0						0.0
+345	KATIRCI Berkay	TUR			0.0		0.0														0.0
+346	KUCEBA Vitalijs	LAT						0.0													0.0
+347	ULUTAS Denizhan	TUR			0.0		0.0														0.0
+348	MINDELOF Vincent	SWE						0.0		0.0					0.0			0.0			0.0
+349	PODRALSKI Maciej	POL						0.0													0.0
+349	MARAVELES Juan	MEX									0.0										0.0
+351	AHLQVIST Carl Oskar	SWE						0.0							0.0						0.0
+352	YAYLIOGLU Ates Mukremin	TUR			0.0																0.0
+352	ZURAWSKI Bartosz	POL						0.0													0.0
+354	SAMORA GERONIMO Jose Gabriel	DOM	0.0					0.0			0.0				0.0				0.0		0.0
+355	SORENSEN Julius	DEN						0.0							0.0						0.0
+356	SAY Amil Efe	TUR					0.0														0.0
+356	DE ALMEIDA Dominic	GBR						0.0													0.0
+356	KARAMANOGLU Berkay Efe	TUR			0.0																0.0
+359	UGUR Dogu Deniz	TUR			0.0		0.0														0.0
+360	INAL Yusufcan	TUR			0.0																0.0
+361	JUNGHANNS Richard	GER						0.0													0.0
+361	POPPEL Martin	SWE													0.0						0.0
+363	EGYENES PORSOK Henrik	SVK						0.0													0.0
+363	LAURIDSEN Christoffer Grove	DEN													0.0						0.0
+365	ZINGMARK William	SWE						0.0							0.0						0.0
+366	SAHIB Aiman	IRQ					0.0														0.0
+367	TETERIS Lukas	LAT						0.0										0.0			0.0
+368	MARTINEZ RAMIREZ Octavio	MEX						0.0	0.0	0.0	0.0										0.0
+369	AL-MOHAMMEADWI Ali	IRQ					0.0										0.0				0.0
+370	OTAYZA Vicente	CHI																	0.0		0.0
+370	EWERS Alexander	SWE													0.0						0.0
+372	MAROSTEGA Pedro	BRA	0.0					0.0	0.0	0.0	0.0	(0.0)									0.0
+373	GROSVENOR Owen	GBR						0.0							0.0						0.0
+374	CANCHEZ SIFUENTES Federico	PER																	0.0		0.0
+375	LAKEHAL AYAT Anil	ALG	0.0					0.0	0.0		0.0				0.0						0.0
+376	PERSSON Sebastian	SWE						0.0							0.0						0.0
+377	BROWN Stephen	IRL						0.0													0.0
+377	MARINO Nicolas	ARG									0.0										0.0
+379	VILLACRESES BRAVO Mathias Xavier	ECU									0.0								0.0		0.0
+380	ENARSSON Simon	SWE													0.0						0.0
+381	MOLLARD Christopher	GBR						0.0							0.0						0.0
+382	CECENA GRANDE Carlos Eduardo	ESA																	0.0		0.0
+383	MORRIS Richard	GBR						0.0							0.0						0.0
+384	LLOYD Alexander	GBR						0.0													0.0
+384	REQUENA Johangel	VEN																	0.0		0.0
+384	VAZQUEZ Adrian	MEX									0.0										0.0
+387	SHEARDOWN Christopher	CAN	0.0								0.0										0.0
+388	COOK Keith	GBR						0.0													0.0
+388	HAGEN Timon	NED													0.0						0.0
+388	LOPEZ GONZALEZ Keven Steven	NCA																	0.0		0.0
+391	PAGUAGA AGUILAR Flavio Roberto	NCA																	0.0		0.0
+391	HANSEN Mikkel Fuglsang	DEN													0.0						0.0
+393	SOMIR Avinash Vishnu	GUY																	0.0		0.0
+393	DOUE Guillaume	FRA													0.0						0.0
+395	MELARAGNO Rafael	BRA									0.0										0.0
+395	HENRIQUEZ PEREZ Jaime Alfredo	ESA																	0.0		0.0
+397	ABIDOGUN Kola	GBR						0.0							0.0						0.0
+398	OSMANSKI Pawel	POL						0.0	0.0												0.0
+399	QUEVEDO Nicolas	COL									0.0										0.0
+399	CANDIOLO Federico Alejandro	BER																	0.0		0.0
+401	POST Patrick	NED						0.0							0.0						0.0
+402	GROSS Niv	ISR						0.0													0.0
+402	WEVER Edwin Alexander	ARU																	0.0		0.0
+402	KUNZ MALAGAMBA Alexander	MEX									0.0										0.0
+405	SHARMAN Conor	GBR													0.0						0.0
+405	BOTERO Ernesto	COL									0.0										0.0
+405	COVARRUBIAS Hector	MEX									0.0										0.0
+405	MAURICE Marcel	ANT																	0.0		0.0
+409	GILLMAN John	GBR						0.0							0.0						0.0
+410	RISCO Martin	PER													0.0						0.0
+410	NGUYEN Tuan Anh	VIE											0.0								0.0
+412	DAURENBEKOV Alibek	KAZ													0.0						0.0
+412	CAMAYO ROSERO Andres Camilo	COL									0.0										0.0
+412	OWAIDA Ali	QAT											0.0								0.0
+415	TARASIEWICZ Maxime	POL						0.0													0.0
+415	SOBIROV Abror	UZB											0.0								0.0
+415	GIACON Daniel	NED						0.0													0.0
+415	ECHEVERRIA ARROYO Carlos Agustin	ECU									0.0										0.0
+419	THOUNAOJAM Rajeshor Singh	IND											0.0								0.0
+419	ORTEGA REXACH Jabnyell	PUR									0.0										0.0
+419	TARVAINEN Samuli	FIN													0.0						0.0
+422	PORS Christian	DEN								0.0					0.0						0.0
+423	HUYBRECHT Gijs	BEL				0.0									0.0						0.0
+424	ARJUN Arjun	IND	0.0										0.0								0.0
+425	BARWELL Peter	GBR						0.0													0.0
+425	KUNZ MALAGAMBA Bernard	MEX									0.0										0.0
+427	GOMEZ NOVOA Andres Felipe	COL									0.0										0.0
+427	LEONG Chi Leng	MAC											0.0								0.0
+429	AL-ASMI Hamad	QAT											0.0								0.0
+429	PAPADOPOULOS Jordanis	SWE													0.0						0.0
+431	TAM Rafferty	HKG						0.0	0.0												0.0
+432	ROMERO Edgar	GUA									0.0										0.0
+432	SALIM Aryanto Agus	INA											0.0								0.0
+432	ERICSON Christian	SWE													0.0						0.0
+435	BALOGH Boldizsar	HUN								0.0								0.0			0.0
+436	RAI Rakesh	IND											0.0								0.0
+437	NAVAS Miguel	BEL				0.0			0.0	0.0								0.0			0.0
+438	SIERRA Kevin	GUA									0.0	0.0									0.0
+439	BLUMENTALS Renars	LAT						0.0													0.0
+439	BHANDARI Anup	NEP											0.0								0.0
+441	KOLESNIKOV Pylyp	UKR							0.0	0.0								0.0			0.0
+442	YANES Francisco	GUA									0.0	0.0									0.0
+443	ALBASHIR Meshary Salim	KSA											0.0								0.0
+443	ALHUSSAIN Ali	KSA											0.0								0.0
+443	ALQUDIHI Ahmed	KSA											0.0								0.0
+446	WOJTKOWIAK Adrian	POL						0.0													0.0
+446	MARIN Angel	MEX									0.0										0.0
+448	CARDOSO Vinicius	BRA									0.0										0.0
+449	RIVERA Angel	GUA									0.0										0.0
+450	VADANIUC Eugeniu	MDA																0.0			0.0
+450	PEDONE Livio	ITA						0.0													0.0
+450	URIBE GOMEZ Sebastian	COL									0.0										0.0
+450	SOLIS CORREA Mathew Alejandro	ECU									0.0										0.0
+454	TELIPORANIDIS Panagiotis	GRE																0.0			0.0
+455	FORMAN Joao	BRA									0.0										0.0
+456	SOBCZAK Piotr	POL				0.0		0.0													0.0
+457	MONTANO Andres	BOL									0.0										0.0
+458	CHARREU Jose	POR		0.0		0.0		0.0													0.0
+459	PAGE James	GBR						0.0													0.0
+460	PRYMACK Anthony	CAN	0.0	0.0		0.0		0.0	0.0	(0.0)											0.0
+461	CHU Kai Yiu	HKG						0.0	0.0												0.0
+462	NOWOSIELSKI Ksawery	POL						0.0													0.0
+463	MACI Alessandro	ITA						0.0													0.0
+464	ORSZYNSKI Oskar	POL						0.0													0.0
+465	LAU Tak Sing Edwin	HKG						0.0	0.0								0.0				0.0
+466	WIKSTROM Olle	SWE						0.0													0.0
+467	VOLTZ Tom	FRA						0.0													0.0
+468	DONG Li	CHN		0.0												0.0	0.0				0.0
+469	AHMED Marwan	EGY	0.0	0.0					0.0	0.0						0.0	(0.0)				0.0
+470	CHOI Siu Tong Edward	HKG						0.0													0.0
+471	SEO Myeong Cheol	KOR		0.0													0.0				0.0
+472	AMBEL Pablo	ESP						0.0													0.0
+473	BERJOZKIN Anton	HUN				0.0		0.0	0.0												0.0
+474	KAWIECKI Pawel	POL								0.0											0.0
+474	JAY MEJIAS Riuben	CUB										0.0									0.0
+474	KHITROV Dmitriy	RUS														0.0					0.0
+474	WU Junhao	CHN															0.0				0.0
+478	SENIC Anatolii	MDA	0.0							0.0		0.0									0.0
+479	DEI ROSSI Alberto	ITA						0.0													0.0
+479	KIM Hyun Woo	KOR															0.0				0.0
+481	ZARETTSKY Adam	ISR						0.0													0.0
+482	LIU Weijian	CHN															0.0				0.0
+483	CARTY CARTY Michael	CUB										0.0									0.0
+484	FRANCO Piero	ITA				0.0															0.0
+485	LUKASHEVICH Aliaksandr	BLR							0.0							0.0					0.0
+486	ZMIJEWSKI Filip	POL						0.0													0.0
+486	JAY MEJIAS Ruben	CUB										0.0									0.0
+488	LEUNG Sing Ho	HKG	0.0									0.0									0.0
+489	MAGERAS Stephen	USA	0.0																		0.0
+489	MO Ziwei	CHN															0.0				0.0
+491	HAN Sangkyu	KOR	0.0																		0.0
+491	PASINI Lorenzo	ITA				0.0															0.0
+493	GLONEK Radoslaw	POL							0.0	0.0											0.0
+494	ZHOU Zhile	CHN															0.0				0.0
+494	KUTS Roman	RUS														0.0					0.0
+494	MULCAHY Isaac Miles	GBR						0.0													0.0
+497	CLAIRET ROA Dimitri Patrik	COL				0.0			0.0												0.0
+498	CUK Veljko	SRB														0.0					0.0
+499	RAMOS RAMOS Leandro	CUB										0.0									0.0
+499	SANGUINO Rodrigo	POR						0.0													0.0
+499	BATES Ben	GBR						0.0													0.0
+499	ZHURAVLEV Vladislav	RUS														0.0					0.0
+499	KIM Aleks	KOR															0.0				0.0
+504	CZERWINSKI Krzysztof	POL				0.0				0.0											0.0
+505	MATHIEU Adam	USA	0.0																		0.0
+506	WANG Chun Jui	TPE		0.0													0.0				0.0
+507	SZEREMI Andras	HUN				0.0			0.0												0.0
+508	DEAMER Euan	GBR						0.0													0.0
+508	ARCHER Ciaran	GBR						0.0													0.0
+510	TSUKUDA Fuminari	JPN		0.0																	0.0
+511	MESZAROS Tamas	HUN							0.0	0.0		0.0									0.0
+512	TENBERGEN Paul	GER								0.0						0.0					0.0
+513	CAMIO Alexandre	FRA														0.0					0.0
+513	MOGENA FROMETA Enmanuel Abdiel	CUB										0.0									0.0
+513	MILLER Jakub	POL						0.0													0.0
+516	GRANT Sean	CAN	0.0																		0.0
+516	MATSUMURA Yuma	JPN		0.0																	0.0
+516	MOSIELLO Lorenzo	ITA						0.0													0.0
+519	FRANCELLA Lorenzo	ITA				0.0															0.0
+519	MEDINILLA Andreas	ESP						0.0													0.0
+519	CRNJAK Tom	BEL								0.0											0.0
+522	KOLTYGO Volodymyr	UKR	0.0																		0.0
+522	BURNATSEV Ilya	RUS														0.0					0.0
+522	CRUZ GALVEZ Yoerlandy	CUB										0.0									0.0
+522	SCHENKEL Joseph	USA						0.0													0.0
+526	KHAZBAK Hazem	EGY	0.0													0.0	0.0				0.0
+527	CHANG Jason	USA	0.0						0.0												0.0
+528	RUIZ ALCONERO Juan	ESP						0.0													0.0
+529	ETTELT Maximilian	AUT		0.0		0.0			0.0	0.0											0.0
+530	AVELAR Luis	POR						0.0													0.0
+531	DI MARTINO Andrea	ITA						0.0													0.0
+532	DROBYSHEV Alexander	RUS														0.0					0.0
+532	RAI Rajan	GBR						0.0													0.0
+534	MACDOUGALL Forrest	USA	0.0																		0.0
+534	KOZLOWSKI Szymon	POL				0.0															0.0
+534	WOOLLEY Aidan	GBR						0.0													0.0
+537	SOUZA Joao Antonio	BRA	0.0							0.0		0.0									0.0
+538	DEGTYAREV Ilya	RUS							0.0												0.0
+538	KISS Daniel	HUN						0.0													0.0
+540	NAGASHIMA Noriyuki	JPN	0.0	0.0																	0.0
+541	SYRACHYNSKYY Pavlo	UKR				0.0															0.0
+541	SAUKANS Olafs	LAT						0.0													0.0
+543	WANG Yung Hsin	TPE															0.0				0.0
+543	TAMBURINI Jacopo	ITA						0.0													0.0
+545	RAHBEK Mikkel Christian	DEN				0.0			0.0	0.0											0.0
+546	SHIKINE Akihiro	JPN		0.0																	0.0
+546	DE LANGE Kieran	GBR						0.0													0.0
+546	FERNANDEZ PRADA Kenneth David	COL										0.0									0.0
+546	LUU Hong Son	VIE															0.0				0.0
+550	XU Yu	CHN															0.0				0.0
+550	NICHOLAS Kameron	GBR						0.0													0.0
+552	RICHTER Stefan	AUT				0.0			0.0	0.0						0.0					0.0
+553	FUNAMOTO Soichiro	JPN		0.0																	0.0
+553	QIU Chenjie	CHN															0.0				0.0
+555	LUK Wing Chun	HKG		0.0													0.0				0.0
+556	MOHD Tariq	IND														0.0					0.0
+557	LEHMANN Lucas	GER								0.0											0.0
+557	LOZOVIK Alan	GBR						0.0													0.0
+557	LI Michael	USA	0.0																		0.0
+560	MATSUMOTO Suguru	JPN		0.0																	0.0
+560	CHAN Wei Yu	SGP															0.0				0.0
+560	SANO Takafumi	JPN		0.0																	0.0
+560	ZOONS Edo	NED						0.0													0.0
+564	HUANG Hsin-Jen	TPE															0.0				0.0
+564	ORTS Lucas	USA	0.0																		0.0
+564	OVADIA Pele	ISR						0.0													0.0
+567	TSAI Yueh Ting	TPE	0.0														0.0				0.0
+568	JOLLEY Isaac	GBR						0.0													0.0
+569	YAN Jing-Cheng	TPE		0.0													0.0				0.0
+570	AZUMA Teppei	JPN		0.0																	0.0
+571	CHIANG Alexander	USA	0.0	0.0		0.0															0.0
+572	COHEN Nadav	ISR						0.0													0.0
+573	SALEEM Ghaith	IRQ															0.0				0.0
+573	HOLMES Stuart	USA	0.0																		0.0
+575	AUTUORI Marco	ITA				0.0															0.0
+575	MATSUO Yuki	JPN		0.0																	0.0
+575	NG Lok Wang Lawrence	HKG		0.0																	0.0
+575	KOREN Moti Martin	ISR						0.0													0.0
+579	YUEN Chun Hei James	HKG						0.0													0.0
+580	MORRIS Jesse	AUS		0.0					0.0	0.0											0.0
+581	BAKO Tamas	HUN				0.0			0.0												0.0
+582	WILLIAMS Robert	GBR						0.0													0.0
+583	RATTAN Amol	GBR	0.0	0.0																	0.0
+584	STALDER Leonard	SUI				0.0															0.0
+584	CHOI Chun Yin Ryan	HKG		0.0																	0.0
+584	TAPONEN Oskari	FIN						0.0													0.0
+584	SACCHETTO Saverio	ITA						0.0													0.0
+588	GU Daniel	CAN	0.0																		0.0
+588	SASAKI Ryoma	JPN		0.0																	0.0
+590	HAGLUND George	USA	0.0																		0.0
+590	RUDNICKI Mikolaj	POL						0.0													0.0
+592	PIETSCH Lewis	GER						0.0		0.0											0.0
+593	KUBIAK Filip	POL						0.0													0.0
+594	HOFFMANN Henry	GER								0.0											0.0
+595	N'KENE MBIA BENE Cedric	CMR							0.0												0.0
+595	CIUTI Tommaso	ITA				0.0															0.0
+595	SUZUKI Ippei	JPN		0.0																	0.0
+595	OLSZEWSKI Wiktor	POL						0.0													0.0
+599	WILLIAMS Gavin	IRL				0.0		0.0													0.0
+600	VALICSEK Peter	HUN				0.0				0.0											0.0
+601	KUMBLA Sidarth	USA	0.0																		0.0
+602	BIRD Harry	GBR						0.0													0.0
+602	VERGNANO Edoardo	SUI				0.0															0.0
+602	GRONNINGSATER Eoin	USA	0.0																		0.0
+605	ST JOHN Charlie	GBR						0.0													0.0
+605	EXETER Thomas	GBR						0.0													0.0
+605	KUZNETSOV Nikita	GBR						0.0													0.0
+608	KONTOCHRISTOPOULOS Nikolaos	GRE				0.0				0.0											0.0
+609	SANTOS Gael	POR				0.0			0.0	0.0											0.0
+610	HAMLESCHER Magnus	GER								0.0											0.0
+611	HASSAN Mohamed	EGY	0.0																		0.0
+612	FENS Julian	NED						0.0													0.0
+613	SEMBA Kyosuke	JPN		0.0																	0.0
+613	CRIPWELL Phillip	IRL						0.0													0.0
+615	VINLUAN Rafael Enrique	PHI	0.0			0.0		0.0													0.0
+616	SCHIAVONE Saverio	ITA				0.0															0.0
+616	HADLER David	TPE	0.0																		0.0
+618	DALLASEN Matthew	AUS		0.0																	0.0
+619	PICHLER Leonardo	GER								0.0											0.0
+620	CAPON Simon	AUS		0.0																	0.0
+620	KUME Haruki	JPN		0.0																	0.0
+622	KAMPHAUS Eric	LUX							0.0	0.0											0.0
+623	CHRISTEN Hendrik	GER								0.0											0.0
+623	NITTA Hiroto	JPN		0.0																	0.0
+623	SAVIN Raphael	FRA							0.0												0.0
+626	O Chun Yee	HKG		0.0																	0.0
+627	SOUZA Pierre	BRA	0.0			0.0			0.0												0.0
+628	CHEN Raymond	USA	0.0																		0.0
+628	SEBBAN Theo	FRA							0.0												0.0
+630	DOENZ Jonathan	SUI				0.0															0.0
+631	CHEN Yu Chun	TPE		0.0																	0.0
+632	FARK Frederic	GER								0.0											0.0
+633	CRUMPLER John	USA	0.0																		0.0
+633	MENTOR Allan	AUS		0.0																	0.0
+635	MOONEY GRAND Samuel	AUS		0.0																	0.0
+635	NISHIMURA Takuya	JPN		0.0																	0.0
+635	MICHIWAKI Keita	JPN		0.0																	0.0
+638	LIND Jacob	CAN	0.0																		0.0
+639	PINTO Daniel	COL				0.0			0.0	0.0											0.0
+640	GOU Jarred	USA	0.0																		0.0
+640	SUNOUCHI Nagahito	JPN		0.0																	0.0
+640	HSU Shuo Ting	TPE		0.0																	0.0
+643	DE JONG Olivier	NED								0.0											0.0
+643	WHIFFIN Noah	AUS		0.0																	0.0
+645	CHENG Yun-Fei	TPE		0.0																	0.0
+645	LOISEL Pierre	FRA							0.0												0.0
+647	GARCIA-ALZORRIZ Roger	ESP								0.0											0.0
+648	REVAH Matan	ISR							0.0												0.0
+648	PISTOIA Thaigo	BRA	0.0																		0.0
+650	MARINO Salvatore	GER								0.0											0.0
+651	MOO Gareth Gabriel Ted Fam	ARU	0.0																		0.0
+652	BAWA Kawish	IND	0.0																		0.0
+653	GOMBOS Tom	GER								0.0											0.0
+654	WEINER Bjoern-Erik	GER								0.0											0.0
+655	TIMMERMANS Nathan	BEL								0.0											0.0
+656	VESPER Marian Alexander	GER								0.0											0.0
+657	METOUI Mohamed Aziz	TUN							0.0												0.0
+658	CHEBLI Alexis Joseph	LBN							0.0												0.0
+658	BOJANOV Boris	CAN								0.0											0.0
+660	VELASCO Daniel	BRA							0.0	0.0											0.0
+661	HULL James	AUS							0.0	0.0											0.0
+662	RHEINGANS-YOO Duncan	USA								0.0											0.0
+663	OZDEMIR Erdinc	TUR								0.0											0.0
