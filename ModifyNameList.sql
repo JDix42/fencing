@@ -100,27 +100,18 @@ SELECT LEN(LastName) - LEN(REPLACE(LastName, ' ', ''))
 FROM dbo.IntRank_Sept2016
 
 SELECT SUBSTRING(LastName, CHARINDEX(' ', LastName) + 1, LEN(LastName)) AS FirstName,
-SUBSTRING(LastName, 0, CHARINDEX(' ', LastName)) AS LN
+SUBSTRING(LastName, 0, CHARINDEX(' ', LastName)) AS LN,
+LastName
 FROM dbo.IntRank_Sept2016
 WHERE (LEN(LastName) - LEN(REPLACE(LastName, ' ', ''))) = 1
 
 SELECT SUBSTRING(LastName, CHARINDEX(' ', LastName) + 1, LEN(LastName)) AS FN,
 SUBSTRING(LastName, 0, CHARINDEX(' ', LastName)) AS LN,
+LastName
 FROM dbo.IntRank_Sept2016
-WHERE (LEN(LastName) - LEN(REPLACE(LastName, ' ', ''))) = 2
+WHERE (LEN(LastName) - LEN(REPLACE(LastName, ' ', ''))) = 3
 
-SELECT Name.FrontName, IR.LastName
-FROM (SELECT MainName.FN, MainName.LN, MainName.TotName,
-		SUBSTRING(MainName.FN, 0, CHARINDEX(' ', MainName.FN)) AS FrontName
-FROM (SELECT SUBSTRING(LastName, CHARINDEX(' ', LastName) + 1, LEN(LastName)) AS FN,
-	SUBSTRING(LastName, 0, CHARINDEX(' ', LastName)) AS LN,
-	LastName AS TotName
-	FROM dbo.IntRank_Sept2016
-	WHERE (LEN(LastName) - LEN(REPLACE(LastName, ' ', ''))) = 2) AS MainName) AS Name
-LEFT JOIN dbo.IntRank_Sept2016 AS IR
-ON Name.TotName = IR.LastName
-WHERE UPPER(Name.FrontName) = Name.FrontName COLLATE Latin1_General_CS_AI
-
+SELECT * FROM dbo.IntRank_Sept2017
 
 SELECT LastName 
 FROM 
