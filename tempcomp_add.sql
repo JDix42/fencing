@@ -3,7 +3,7 @@
 --					FROM dbo.Comp);
 
 /* Manually Choose Comp_ID */
-DECLARE @CompID Int = 10
+DECLARE @CompID Int = ##
 
 /* Determine which BFA ranking set to use.
 New rankings sets with different NIF values.

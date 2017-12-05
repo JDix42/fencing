@@ -7,6 +7,8 @@ FROM dbo.TempComp
 
 SELECT * FROM dbo.TempComp
 
+SELECT * FROM dbo.TempOneCol
+
 SELECT * FROM dbo.Comp
 ORDER BY Date;
 
@@ -128,3 +130,5 @@ SELECT LastName, FirstName, Country
 FROM dbo.IntRank_Sept2016) AS Comb
 
 SELECT * FROM dbo.IntRank_Sept
+
+SELECT * FROM dbo.TempComp

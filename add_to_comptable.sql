@@ -1,8 +1,8 @@
-DECLARE @LongName nvarchar(255) = 'Derry Open 2017';
+DECLARE @LongName nvarchar(255) = 'Tournoi Satellite Fleuret Masculin Amsterdam 2016';
 DECLARE @ShortName nvarchar(8) = 'DrryOpen';
-DECLARE @Date datetime = '2017-11-18 08:45:00.000';
-DECLARE @TotalNumFencers Int = '14';
-DECLARE @DomOrInt nvarchar(1) = 'D'
+DECLARE @Date datetime = '2016-09-24 09:00:00.000';
+DECLARE @TotalNumFencers Int = '107';
+DECLARE @DomOrInt nvarchar(1) = 'I'
 
 INSERT INTO dbo.Comp (
 CompName,
@@ -19,5 +19,15 @@ VALUES (@LongName,
 		@DomOrInt);
 
 UPDATE dbo.Comp
-SET FencerCutOff = (FLOOR( 0.75 * @TotalNumFencers))
+SET FencerCutOff = (
+CASE
+/*	If there are more than 171 fencers
+then the cut-off is beyond the 128 - this
+is not allowed */
+	WHEN @TotalNumFencers > 171
+	THEN '128'
+	ELSE
+	FLOOR( 0.75 * @TotalNumFencers)
+END
+)
 WHERE CompName = @LongName;
