@@ -5,16 +5,6 @@
 /* Manually Choose Comp_ID */
 DECLARE @CompID Int = 10
 
-/* Create table for international results. The date from the BFA set will
-determine which set of international results are chosen */
-DROP TABLE #INT_RES
-
-CREATE TABLE #INT_RES(
-LastName		NVARCHAR(255),
-FirstName		NVARCHAR(255),
-Country			NVARCHAR(255),
-NifVals			Int)
-
 /* Determine which BFA ranking set to use.
 New rankings sets with different NIF values.
 The rankings are updated every September and 
@@ -42,10 +32,6 @@ IF @Comp_date >= @date1
 		INSERT INTO #BFA_set
 		SELECT *
 		FROM dbo.BFA_ID
-
-		INSERT INTO #INT_RES
-		SELECT LastName, FirstName, Country, NifVals
-		FROM dbo.IntRank_Sept2017
 	END
 ELSE IF @Comp_date >= @date2
 	BEGIN
@@ -53,10 +39,6 @@ ELSE IF @Comp_date >= @date2
 		INSERT INTO #BFA_set
 		SELECT *
 		FROM dbo.BFA_IDMar2017
-		
-		INSERT INTO #INT_RES
-		SELECT LastName, FirstName, Country, NifVals
-		FROM dbo.IntRank_Sept2016
 	END
 ELSE
 	BEGIN 
@@ -64,11 +46,36 @@ ELSE
 		INSERT INTO #BFA_set
 		SELECT *
 		FROM dbo.BFA_IDSept2016
-		
+	END ;		
+
+/* Create table for international results. The date from the BFA set will
+determine which set of international results are chosen */
+DROP TABLE #INT_RES
+
+CREATE TABLE #INT_RES(
+LastName		NVARCHAR(255),
+FirstName		NVARCHAR(255),
+Country			NVARCHAR(255),
+NifVals			Int)
+
+
+/* Determine which set of international rankings need to be used for the results.
+The international seasion is being assumed to run from August to August. */
+DECLARE @date_int1 datetime = '2016-08-01 00:00:00.000'
+DECLARE @date_int2 datetime = '2017-08-01 00:00:00.000'
+
+IF @Comp_date > @date_int2
+	BEGIN
+		INSERT INTO #INT_RES
+		SELECT LastName, FirstName, Country, NifVals
+		FROM dbo.IntRank_Sept2017
+	END
+ELSE
+	BEGIN
 		INSERT INTO #INT_RES
 		SELECT LastName, FirstName, Country, NifVals
 		FROM dbo.IntRank_Sept2016
-	END ;		
+	END
 
 /* This temporary table contains all of the Names and country for fencers from all
 the internation results. These are used as a reference to determine the nationality
