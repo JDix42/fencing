@@ -68,7 +68,7 @@ WHERE CHARINDEX(' ', LTRIM(FirstName)) > 0;
 
 /* Remove individual lines based on the fencer ID */
 DELETE dbo.TempComp
-WHERE FencerID = 28
+WHERE FencerID = 62
 /* */
 
 UPDATE dbo.BFA_IDSept2016
@@ -77,8 +77,8 @@ WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'DANIEL'
 AND REPLACE(RTRIM(LTRIM(UPPER(Surname))), NCHAR(160), '') = 'ELLIKER' 
 
 UPDATE dbo.TempComp
-SET BFA_ID = NULL
-WHERE BFA_ID = '133155'
+SET Country = 'GER'
+WHERE FencerID = 29
 
 SELECT * FROM dbo.BFA_IDSept2016
 WHERE BFA_ID = '131069'
@@ -113,5 +113,18 @@ WHERE (LEN(LastName) - LEN(REPLACE(LastName, ' ', ''))) = 3
 
 SELECT * FROM dbo.IntRank_Sept2017
 
-SELECT LastName 
-FROM 
+SELECT * FROM dbo.IntRank_Sept2016 AS IR
+RIGHT JOIN dbo.TempComp AS TC
+ON REPLACE(LTRIM(RTRIM(TC.LastName)), CHAR(160), '') = REPLACE(LTRIM(RTRIM(IR.LastName)), CHAR(160), '')
+AND REPLACE(LTRIM(RTRIM(TC.FirstName)), CHAR(160), '') = REPLACE(LTRIM(RTRIM(IR.FirstName)), CHAR(160), '')
+WHERE IR.Country != 'GBR'
+
+SELECT DISTINCT Comb.LastName, Comb.FirstName, Comb.Country
+FROM (
+SELECT LastName, FirstName, Country
+FROM dbo.IntRank_Sept2017
+UNION ALL 
+SELECT LastName, FirstName, Country
+FROM dbo.IntRank_Sept2016) AS Comb
+
+SELECT * FROM dbo.IntRank_Sept

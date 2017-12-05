@@ -5,6 +5,16 @@ DECLARE @CompID Int = (SELECT MAX(Comp_ID)
 /* Manually Choose Comp_ID */
 --DECLARE @CompID Int = 5
 
+/* Create table for international results. The date from the BFA set will
+determine which set of international results are chosen */
+DROP TABLE #INT_RES
+
+CREATE TABLE #INT_RES(
+LastName		NVARCHAR(255),
+FirstName		NVARCHAR(255),
+Country			NVARCHAR(255),
+NifVals			Int)
+
 /* Determine which BFA ranking set to use.
 New rankings sets with different NIF values.
 The rankings are updated every September and 
@@ -32,6 +42,10 @@ IF @Comp_date >= @date1
 		INSERT INTO #BFA_set
 		SELECT *
 		FROM dbo.BFA_ID
+
+		INSERT INTO #INT_RES
+		SELECT LastName, FirstName, Country, NifVals
+		FROM dbo.IntRank_Sept2017
 	END
 ELSE IF @Comp_date >= @date2
 	BEGIN
@@ -39,6 +53,10 @@ ELSE IF @Comp_date >= @date2
 		INSERT INTO #BFA_set
 		SELECT *
 		FROM dbo.BFA_IDMar2017
+
+		INSERT INTO #INT_RES
+		SELECT LastName, FirstName, Country, NifVals
+		FROM dbo.IntRank_Sept2016
 	END
 ELSE
 	BEGIN 
@@ -46,7 +64,30 @@ ELSE
 		INSERT INTO #BFA_set
 		SELECT *
 		FROM dbo.BFA_IDSept2016
+
+		INSERT INTO #INT_RES
+		SELECT LastName, FirstName, Country, NifVals
+		FROM dbo.IntRank_Sept2016
 	END ;		
+
+/* This temporary table contains all of the Names and country for fencers from all
+the internation results. These are used as a reference to determine the nationality
+of different fencers */
+DROP TABLE #Int_IDs
+
+CREATE TABLE #INT_IDs(
+LastName		NVARCHAR(255),
+FirstName		NVARCHAR(255),
+Country			NVARCHAR(255))
+
+INSERT INTO #INT_IDs
+SELECT DISTINCT Comb.LastName, Comb.FirstName, Comb.Country
+FROM (
+SELECT LastName, FirstName, Country
+FROM dbo.IntRank_Sept2017
+UNION ALL 
+SELECT LastName, FirstName, Country
+FROM dbo.IntRank_Sept2016) AS Comb
 
 /* Tidy up competition table */
 EXEC fencing_project.dbo.uspname_modify;
@@ -223,6 +264,15 @@ LEFT JOIN #BTemp2 AS BFA
 ON TC.BFA_ID = BFA.BFA_ID
 WHERE TC.Country IS NULL;
 
+/* Check for international fencers */
+UPDATE dbo.TempComp
+SET Country = Int_ID.Country
+FROM dbo.TempComp AS TC
+LEFT JOIN #INT_IDs AS Int_ID
+ON REPLACE(LTRIM(RTRIM(TC.LastName)), CHAR(160), '') = REPLACE(LTRIM(RTRIM(Int_ID.LastName)), CHAR(160), '')
+AND REPLACE(LTRIM(RTRIM(TC.FirstName)), CHAR(160), '') = REPLACE(LTRIM(RTRIM(Int_ID.FirstName)), CHAR(160), '')
+WHERE TC.Country IS NULL;
+
 SELECT * FROM TempComp
 WHERE Country IS NULL;
 
@@ -330,6 +380,16 @@ CASE
 	END
 	)
 WHERE Country != 'GBR' AND BFA_ID IS NULL;
+
+/* Change NIF values if it is larger due to the international ranking of the fencer */
+UPDATE dbo.TempComp
+SET BF_points = IR.NifVals
+FROM dbo.TempComp AS TC
+LEFT JOIN #INT_RES AS IR
+ON REPLACE(LTRIM(RTRIM(TC.LastName)), CHAR(160), '') = REPLACE(LTRIM(RTRIM(IR.LastName)), CHAR(160), '')
+AND REPLACE(LTRIM(RTRIM(TC.FirstName)), CHAR(160), '') = REPLACE(LTRIM(RTRIM(IR.FirstName)), CHAR(160), '')
+WHERE TC.Country NOT IN ('GBR', 'SCO', 'WAL', 'NIR', 'ENG')
+AND IR.NifVals > TC.BF_points;
 
 /* This section shows what fencers have had their NIF (BF_points)
 modified due to not have a ranking, and by being international fencers,
