@@ -1,7 +1,7 @@
-DECLARE @LongName nvarchar(255) = 'Tournoi Satellite Fleuret Masculin Amsterdam 2016';
-DECLARE @ShortName nvarchar(8) = 'DrryOpen';
-DECLARE @Date datetime = '2016-09-24 09:00:00.000';
-DECLARE @TotalNumFencers Int = '107';
+DECLARE @LongName nvarchar(255) = 'Tournoi Satellite Fleuret Masculin Amsterdam 2017';
+DECLARE @ShortName nvarchar(8) = 'AmstrSat';
+DECLARE @Date datetime = '2017-09-23 09:00:00.000';
+DECLARE @TotalNumFencers Int = '75';
 DECLARE @DomOrInt nvarchar(1) = 'I'
 
 INSERT INTO dbo.Comp (

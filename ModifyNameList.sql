@@ -5,8 +5,11 @@ SELECT SUBSTRING(LastName, CHARINDEX(' ', LastName), LEN(LastName)) AS FirstName
 		SUBSTRING(LastName, 0, CHARINDEX(' ', LastName) - 1) AS LastName
 FROM dbo.TempComp
 
+TRUNCATE TABLE dbo.TempComp
+
 SELECT * FROM dbo.TempComp
 
+TRUNCATE TABLE dbo.TempOneCol
 SELECT * FROM dbo.TempOneCol
 
 SELECT * FROM dbo.Comp
@@ -70,7 +73,7 @@ WHERE CHARINDEX(' ', LTRIM(FirstName)) > 0;
 
 /* Remove individual lines based on the fencer ID */
 DELETE dbo.TempComp
-WHERE FencerID = 62
+WHERE FencerID = 23
 /* */
 
 UPDATE dbo.BFA_IDSept2016
@@ -132,3 +135,7 @@ FROM dbo.IntRank_Sept2016) AS Comb
 SELECT * FROM dbo.IntRank_Sept
 
 SELECT * FROM dbo.TempComp
+
+UPDATE dbo.Comp
+SET ShortName = 'AmstrSat'
+WHERE Comp_ID = 47

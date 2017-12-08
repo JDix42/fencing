@@ -174,3 +174,63 @@ WHERE TC.BF_points < BfaT.NifVals
 SELECT SUM(BF_points)
 FROM dbo.TempComp
 
+/* Create temporary table with country, BFA_ID and running total of the BF
+NIF points. If the country is not "GBR" and the running total is >5 then the
+fencer is an overseas fencer that has additional NIF points. This table
+allows us to track which fencer fit this criteria */
+
+DROP TABLE #BFtotal
+
+CREATE TABLE #BFtotal (
+Rank		Float,
+LastName	nvarchar(255),
+FirstName	nvarchar(255),
+Country		nchar(3),
+BFA_ID		Int,
+BF_points	Float,
+BF_runtot	Float)
+
+INSERT INTO #BFtotal
+SELECT TC1.Rank, TC1.LastName, TC1.FirstName, TC1.Country, TC1.BFA_ID, TC1.BF_points, (SELECT SUM(TC2.BF_points) AS BF_runtot
+FROM dbo.TempComp AS TC2
+WHERE TC2.Rank >= TC1.Rank
+AND BFA_ID IS NOT NULL) AS BF_runtot
+FROM dbo.TempComp AS TC1;
+
+SELECT * FROM #BFtotal
+
+/* Update NIF (BF_points) for the overseas fencers.
+The BF_points are:
++6  when BF_runtot >= 24
++3  when 23 >= BF_runtot >= 16 
++1  when 15 >= BF_runtot >= 6
+0   when 5 >= BF_runtot   
+
+Added addition check that the LastName has to match between the 
+#BFtotal and dob.TempComp data bases. This means that there
+is a unique solution for each fencer when there are two or more 
+people wit the same result.*/
+
+UPDATE #BFtotal
+SET BF_points = '6'
+WHERE BFA_ID IS NULL 
+AND BF_runtot >= 24
+
+UPDATE #BFtotal
+SET BF_points = '3'
+WHERE BFA_ID IS NULL 
+AND BF_runtot < 24
+AND BF_runtot >= 16
+
+UPDATE #BFtotal
+SET BF_points = '1'
+WHERE BFA_ID IS NULL 
+AND BF_runtot < 16
+AND BF_runtot >= 6
+
+UPDATE #BFtotal
+SET BF_points = '0'
+WHERE BFA_ID IS NULL 
+AND BF_runtot < 6
+
+SELECT * FROM #BFtotal
