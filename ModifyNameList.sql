@@ -52,8 +52,8 @@ ORDER BY COMP_ID
 
 /* Change countries where only the first two letters have imported */
 UPDATE dbo.TempComp
-SET Country = 'GBR'
-WHERE REPLACE(RTRIM(LTRIM(Country)), NCHAR(160), '') = 'GB'
+SET Country = 'IRL'
+WHERE REPLACE(RTRIM(LTRIM(Country)), NCHAR(160), '') = 'IR'
 
 /* */
 SELECT * FROM dbo.BFA_IDMar2017
@@ -73,7 +73,7 @@ WHERE CHARINDEX(' ', LTRIM(FirstName)) > 0;
 
 /* Remove individual lines based on the fencer ID */
 DELETE dbo.TempComp
-WHERE FencerID = 23
+WHERE FencerID = 80
 /* */
 
 UPDATE dbo.BFA_IDSept2016
