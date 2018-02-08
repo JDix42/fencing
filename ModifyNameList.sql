@@ -76,6 +76,13 @@ DELETE dbo.TempComp
 WHERE FencerID = 80
 /* */
 
+UPDATE dbo.Comp
+SET Category = 'SMF';
+
+SELECT * FROM dbo.Comp
+
+SELECT * FROM dbo.all_results;
+
 UPDATE dbo.BFA_IDSept2016
 SET BFA_ID = '95955'
 WHERE REPLACE(RTRIM(LTRIM(UPPER(FirstName))), NCHAR(160), '') = 'DANIEL'

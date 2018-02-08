@@ -1,6 +1,6 @@
 /* Automatically choose highest comp_ID */
 --DECLARE @CompID Int = (SELECT MAX(Comp_ID)
----					FROM dbo.Comp);
+--					FROM dbo.Comp);
 
 /* Manually Choose Comp_ID */
 --DECLARE @CompID Int = ##

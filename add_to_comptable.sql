@@ -1,7 +1,7 @@
-DECLARE @LongName nvarchar(255) = 'Oxfam Open 2017';
-DECLARE @ShortName nvarchar(8) = 'OxfmOpen';
-DECLARE @Date datetime = '2017-12-09 10:00:00.000';
-DECLARE @TotalNumFencers Int = '22';
+DECLARE @LongName nvarchar(255) = 'Cambridge Winter Tournament';
+DECLARE @ShortName nvarchar(8) = 'CamWintr';
+DECLARE @Date datetime = '2018-01-06 16:37:00.000';
+DECLARE @TotalNumFencers Int = '60';
 DECLARE @DomOrInt nvarchar(1) = 'D'
 
 INSERT INTO dbo.Comp (
@@ -30,4 +30,5 @@ is not allowed */
 	FLOOR( 0.75 * @TotalNumFencers)
 END
 )
-WHERE CompName = @LongName;
+WHERE CompName = @LongName
+AND Date = @Date;

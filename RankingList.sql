@@ -21,6 +21,9 @@ GROUP BY BFA_ID, FirstName, LastName; */
 
 --SELECT * FROM dbo.all_results
 
+/* Select the category that the results are to be averaged for */
+DECLARE @Cat NVARCHAR(3) = 'SMF'
+
 /* This section starts to calculate the ranking list for
 only national compeitions */
 DROP TABLE #TempRes
@@ -57,9 +60,12 @@ LEFT JOIN dbo.Comp AS C
 ON TR2.Comp_ID = C.Comp_ID
 WHERE (TR2.BFA_ID IS NOT NULL AND TR1.BFA_ID IS NULL)
 AND C.Date > DATEADD(year,-1,GETDATE())
+AND C.Category = @Cat
 GROUP BY TR1.BFA_ID, TR1.LastName, TR1.FirstName, TR2.BFA_ID, TR2.LastName, TR2.FirstName) AS TRtmp
 ON TR.FirstName = TRtmp.FirstName AND TR.LastName = TRtmp.LastName
 WHERE TR.BFA_ID IS NULL
+
+SELECT * FROM #TempRes
 
 /* Create table for the final ranking list */
 --SELECT * FROM #TempRes
